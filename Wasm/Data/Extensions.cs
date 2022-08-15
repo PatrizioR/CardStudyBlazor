@@ -1,0 +1,11 @@
+﻿using CardStudyBlazor.Domain;
+
+namespace CardStudyBlazor.Wasm.Data
+{
+    public static class Extensions
+    {
+        public static IServiceCollection AddSynchronizingDataFactory(
+           this IServiceCollection service) =>
+           service.AddSingleton<ICardStudyContextFactory, SynchronizedCardStudyDbContextFactory>();
+    }
+}

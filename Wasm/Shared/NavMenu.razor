@@ -1,0 +1,29 @@
+﻿<div>
+    <div>
+        <a href="">Wasm</a>
+        <button title="Navigation menu" @onclick="ToggleNavMenu">
+            <span></span>
+        </button>
+    </div>
+</div>
+
+<div @onclick="ToggleNavMenu">
+    <nav>
+        <div>
+            <NavLink href="" Match="NavLinkMatch.All">
+                <span aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+    </nav>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

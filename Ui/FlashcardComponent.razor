@@ -1,0 +1,28 @@
+﻿@using CardStudyBlazor.Domain
+@inject ICardStudyService Service
+@if (Item != null)
+{
+    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">@Item.Id</td>
+    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">@Item.Title</td>
+    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">@Item.CardBackTitle</td>
+    <td>
+        <div class="m-2">
+            <div class="px-6 py-4 w-40 rounded-2xl bg-red-200 text-center" @onclick="RemoveFlashcardAsync">Remove</div>
+        </div>
+    </td>
+}
+
+@code {
+    [Parameter]
+    public Flashcard? Item { get; set; }
+
+    private async Task RemoveFlashcardAsync()
+    {
+        if (Item == null)
+        {
+            return;
+        }
+        await Service.RemoveFlashcardAsync(Item.Id);
+        StateHasChanged();
+    }
+}

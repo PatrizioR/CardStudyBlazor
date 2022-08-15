@@ -1,0 +1,147 @@
+﻿@using BlazorDownloadFile
+@using CardStudyBlazor.Domain
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.AspNetCore.Components.Web.Virtualization
+@using Newtonsoft.Json
+@inject ICardStudyService Service
+@inject IBlazorDownloadFileService BlazorDownloadFileService
+
+<div>
+    <div class="flex my-auto">
+        <div><h2 class="text-2xl">Flashcards</h2></div>
+        <div class="m-2">
+            <div class="px-2 py-2 w-28 cursor-pointer rounded-2xl bg-green-200 hover:bg-green-400 shadow-md text-center" @onclick="ExportJsonAsync">Export</div>
+        </div>
+    </div>
+    <div class="m-2">
+        <div @onkeydown="EnterSubmitAsync" class="w-full">
+            <label for="inpTitle" class="w-1/5">Enter Card title:</label>
+            <input class="w-1/5" name="inpTitle" @ref="@inpTitle"
+                   autofocus
+                   type="text"
+                   disabled="@busy"
+                   @bind="newTitle"
+                   @bind:event="oninput" />
+            <label for="inpCardBackTitle">Enter Card back title:</label>
+            <input class="w-1/5" name="inpCardBackTitle" @ref="@inpCardBackTitle"
+                   type="text"
+                   disabled="@busy"
+                   @bind="newCardBackTitle"
+                   @bind:event="oninput" />
+            <button class="w-1/5" @onclick="@(async ()=> await AddFlashcardAsync())"
+                    disabled="@(busy || string.IsNullOrWhiteSpace(newTitle))">
+                Add Flashcard
+            </button>
+        </div>
+    </div>
+    <div class="items-end">
+        <label>Search</label>
+        <input type="search" @bind="SearchText" @bind:event="oninput" />
+    </div>
+    @if (flashcards.Length > 0)
+    {
+        <div class="m-2 flex flex-col">
+            <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                    <div class="overflow-hidden">
+                        <table class="min-w-full">
+                            <thead class="border-b">
+                                <tr>
+                                    <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Id</th>
+                                    <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Title</th>
+                                    <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Back card title</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <Virtualize Items="@filteredFlashcards" Context="flashcard">
+                                    <tr class="border-b">
+                                        <FlashcardComponent @key="@flashcard.Id" Item="@flashcard" />
+                                    </tr>
+                                </Virtualize>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    private ElementReference inpTitle;
+    private ElementReference inpCardBackTitle;
+    private string newTitle = string.Empty;
+    private string newCardBackTitle = string.Empty;
+    public string searchText = string.Empty;
+    public string SearchText{
+        get => searchText;
+        set{
+            if(searchText == value){
+                return;
+            }
+            searchText = value;
+            StateHasChanged();
+        }
+    }
+    private bool busy = false;
+    private Flashcard[] flashcards = Array.Empty<Flashcard>();
+    private Flashcard[] filteredFlashcards => this.flashcards.Where((item) => string.IsNullOrEmpty(searchText) || item.Title.Contains(searchText) || item.CardBackTitle.Contains(searchText)).OrderByDescending(item => item.Id).ToArray();
+    protected override async Task OnInitializedAsync()
+    {
+        await RefreshUiAsync();
+        await base.OnInitializedAsync();
+    }
+
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+        {
+        }
+        return base.OnAfterRenderAsync(firstRender);
+    }
+
+    private async Task RefreshUiAsync()
+    {
+        busy = true;
+        flashcards = await Service.GetFlashcardsAsync();
+        busy = false;
+        StateHasChanged();
+    }
+
+    public async void EnterSubmitAsync(KeyboardEventArgs e)
+    {
+        if (e.Code == "Enter" || e.Code == "NumpadEnter")
+        {
+            await AddFlashcardAsync();
+        }
+    }
+
+    private async Task AddFlashcardAsync()
+    {
+        if (!string.IsNullOrWhiteSpace(newTitle) && !string.IsNullOrWhiteSpace(newCardBackTitle))
+        {
+            busy = true;
+            await Service.AddFlashcardAsync(newTitle, newCardBackTitle);
+            busy = false;
+            newTitle = newCardBackTitle = string.Empty;
+            await RefreshUiAsync();
+            await inpTitle.FocusAsync();
+        }
+    }
+
+    private async Task ExportJsonAsync()
+    {
+        var curFlashcards = await Service.GetFlashcardsAsync();
+        var content = JsonConvert.SerializeObject(curFlashcards, JsonConfiguration.DefaultSerializeSettings);
+
+        var result = await BlazorDownloadFileService.DownloadFileFromText($"cardstudy_{DateTime.Now:yyyy-MM-dd_HH_mm_ss}.json", content, System.Text.Encoding.UTF8, "application/json");
+    }
+
+    private async Task ImportJsonAsync()
+    {
+        var curFlashcards = await Service.GetFlashcardsAsync();
+        var content = JsonConvert.SerializeObject(curFlashcards, JsonConfiguration.DefaultSerializeSettings);
+
+        var result = await BlazorDownloadFileService.DownloadFileFromText($"cardstudy_{DateTime.Now:yyyy-MM-dd_HH_mm_ss}.json", content, System.Text.Encoding.UTF8, "application/json");
+    }
+}
