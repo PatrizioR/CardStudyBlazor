@@ -1,0 +1,78 @@
+﻿@using BlazorDownloadFile
+@using CardStudyBlazor.Domain
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.AspNetCore.Components.Web.Virtualization
+@using Newtonsoft.Json
+@using Microsoft.AspNetCore.Components.Forms
+@inject ICardStudyService Service
+
+<div>
+    <EditForm Model="Language">
+        <InputRadioGroup @bind-Value="Language">
+            <InputRadio Value="1" /> Bahasa Indonesia
+            <InputRadio Value="2" /> Deutsch
+        </InputRadioGroup>
+        #<InputNumber class="w-20" @bind-Value="Amount"></InputNumber>
+    </EditForm>
+
+</div>
+@if (Flashcards?.Any() == true)
+{
+    <div>
+        <div class="m-2 flex flex-col">
+            <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                    <div class="overflow-hidden">
+                        <table class="table-auto">
+                            <thead class="border-b">
+                                <tr>
+                                    <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Id</th>
+                                    <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Bahasa Indonesia</th>
+                                    <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Deutsch</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <Virtualize Items="@RandomFlashcards" Context="Item">
+                                    <tr class="border-b">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">@Item.Id</td>
+                                        @if (Language == 1)
+                                        {
+                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">@Item.Title</td>
+                                            <td class="">
+                                                <div class="px-6 py-4 w-40 rounded-2xl bg-yellow-200 opacity-0 hover:opacity-100 text-center">@Item.CardBackTitle</div>
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td class="">
+                                                <div class="px-6 py-4 w-40 rounded-2xl bg-yellow-200 opacity-0 hover:opacity-100 text-center">@Item.Title</div>
+                                            </td>
+                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">@Item.CardBackTitle</td>
+                                        }
+                                    </tr>
+                                </Virtualize>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    public int Language { get; set; }
+    public int Amount { get; set; } = 20;
+    public Flashcard[]? Flashcards { get; set; }
+    public Random rnd = new Random();
+    public Flashcard[]? RandomFlashcards => Flashcards?.OrderBy(x => rnd.Next()).Take(Amount).ToArray();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            Flashcards = await Service.GetFlashcardsAsync();
+        }
+        await base.OnAfterRenderAsync(firstRender);
+    }
+}

@@ -1,0 +1,59 @@
+﻿<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="h-48 w-screen bg-gray-800 text-white" @bind-Value="Text" @bind-Value:event="oninput" placeholder="Write words and then lets extract the words by count descanding">
+
+</textarea>
+<button class="px-2 py-2 w-28 cursor-pointer rounded-2xl bg-green-200 hover:bg-green-400 shadow-md text-center" @onclick="@CountWordsAsync">Extract</button>
+<hr />
+@if (WordsCount?.Any() == true)
+{
+    <table class="table-auto">
+        <thead>
+            <tr>
+                <th>Word</th>
+                <th>#</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var wordCount in WordsCount.OrderByDescending(item => item.Value))
+            {
+                <tr>
+                    <td>@wordCount.Key</td>
+                    <td>@wordCount.Value</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    public string Text { get; set; } = string.Empty;
+
+    public Dictionary<string, int> WordsCount { get; set; } = new Dictionary<string, int>();
+
+    private async Task CountWordsAsync()
+    {
+        await Task.CompletedTask;
+        if (string.IsNullOrEmpty(Text))
+        {
+            return;
+        }
+        WordsCount.Clear();
+
+        var words = Text.Split(
+            Enumerable.Range(0, 255)
+            .Except(Enumerable.Range(48, 57))
+            .Except(Enumerable.Range(65, 90))
+            .Except(Enumerable.Range(97, 122))
+            .Select(item => (char)item).ToArray()).Where(item => !string.IsNullOrWhiteSpace(item));
+
+        foreach (var word in words.Distinct())
+        {
+            if (WordsCount.Any(item => item.Key.Equals(word, StringComparison.OrdinalIgnoreCase)))
+            {
+                continue;
+            }
+            WordsCount.Add(word, words.Count(item => item.Equals(word, StringComparison.OrdinalIgnoreCase)));
+        }
+
+        StateHasChanged();
+    }
+}

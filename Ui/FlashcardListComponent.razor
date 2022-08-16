@@ -28,8 +28,8 @@
                    disabled="@busy"
                    @bind="newCardBackTitle"
                    @bind:event="oninput" />
-            <button class="w-1/5" @onclick="@(async ()=> await AddFlashcardAsync())"
-                    disabled="@(busy || string.IsNullOrWhiteSpace(newTitle))">
+            <button class="disabled:bg-green-100 disabled:cursor-not-allowed px-3 py-2 w-48 cursor-pointer rounded-2xl bg-green-200 hover:bg-green-400 shadow-md text-center" @onclick="@(async ()=> await AddFlashcardAsync())"
+                    disabled="@(busy || string.IsNullOrWhiteSpace(newTitle)|| string.IsNullOrWhiteSpace(newCardBackTitle))">
                 Add Flashcard
             </button>
         </div>
@@ -118,7 +118,7 @@
 
     private async Task AddFlashcardAsync()
     {
-        if (!string.IsNullOrWhiteSpace(newTitle) && !string.IsNullOrWhiteSpace(newCardBackTitle))
+        if (!string.IsNullOrWhiteSpace(newTitle) && !string.IsNullOrWhiteSpace(newCardBackTitle) && !flashcards.Any((item) => item.Title.Equals(newTitle, StringComparison.OrdinalIgnoreCase)))
         {
             busy = true;
             await Service.AddFlashcardAsync(newTitle, newCardBackTitle);

@@ -2,13 +2,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31611.283
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardStudyBlazor.Wasm", "Wasm\CardStudyBlazor.Wasm.csproj", "{EEF8E254-3652-44DE-889A-F0D87A1A14D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CardStudyBlazor.Wasm", "Wasm\CardStudyBlazor.Wasm.csproj", "{EEF8E254-3652-44DE-889A-F0D87A1A14D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardStudyBlazor.Data", "Data\CardStudyBlazor.Data.csproj", "{0FA1DDE0-F338-4938-9A75-F38BE9A0B8FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CardStudyBlazor.Data", "Data\CardStudyBlazor.Data.csproj", "{0FA1DDE0-F338-4938-9A75-F38BE9A0B8FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardStudyBlazor.Domain", "Domain\CardStudyBlazor.Domain.csproj", "{5DC499BF-5857-4B4E-9334-7197E26A8815}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CardStudyBlazor.Domain", "Domain\CardStudyBlazor.Domain.csproj", "{5DC499BF-5857-4B4E-9334-7197E26A8815}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardStudyBlazor.Ui", "Ui\CardStudyBlazor.Ui.csproj", "{3D499DDE-0B21-4927-94B1-479DBFC1C978}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CardStudyBlazor.Ui", "Ui\CardStudyBlazor.Ui.csproj", "{3D499DDE-0B21-4927-94B1-479DBFC1C978}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
