@@ -1,4 +1,5 @@
-﻿<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="h-48 w-screen bg-gray-800 text-white" @bind-Value="Text" @bind-Value:event="oninput" placeholder="Write words and then lets extract the words by count descanding">
+﻿@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="h-48 w-screen bg-gray-800 text-white" @bind-Value="Text" @bind-Value:event="oninput" placeholder="Write words and then lets extract the words by count descanding">
 
 </textarea>
 <button class="px-2 py-2 w-28 cursor-pointer rounded-2xl bg-green-200 hover:bg-green-400 shadow-md text-center" @onclick="@CountWordsAsync">Extract</button>

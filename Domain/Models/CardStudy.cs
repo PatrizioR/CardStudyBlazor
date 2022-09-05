@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CardStudyBlazor.Domain.Models
 {
-    public class CardStudyDto
+    public class CardStudy
     {
     }
 }

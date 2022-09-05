@@ -1,4 +1,5 @@
-﻿@using BlazorDownloadFile
+﻿@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+@using BlazorDownloadFile
 @using CardStudyBlazor.Domain
 @using Microsoft.AspNetCore.Components.Web
 @using Microsoft.AspNetCore.Components.Web.Virtualization
@@ -16,17 +17,17 @@
             <input class="w-1/5" name="inpTitle" @ref="@inpTitle"
                    autofocus
                    type="text"
-                   disabled="@busy"
+                   disabled="@ComponentsState.Value.IsLoading"
                    @bind="newTitle"
                    @bind:event="oninput" />
             <label for="inpCardBackTitle">Enter Card back title:</label>
             <input class="w-1/5" name="inpCardBackTitle" @ref="@inpCardBackTitle"
                    type="text"
-                   disabled="@busy"
+                   disabled="@ComponentsState.Value.IsLoading"
                    @bind="newCardBackTitle"
                    @bind:event="oninput" />
             <button class="disabled:bg-green-100 disabled:cursor-not-allowed px-3 py-2 w-48 cursor-pointer rounded-2xl bg-green-200 hover:bg-green-400 shadow-md text-center" @onclick="@(async ()=> await AddFlashcardAsync())"
-                    disabled="@(busy || string.IsNullOrWhiteSpace(newTitle)|| string.IsNullOrWhiteSpace(newCardBackTitle))">
+                    disabled="@(ComponentsState.Value.IsLoading || string.IsNullOrWhiteSpace(newTitle)|| string.IsNullOrWhiteSpace(newCardBackTitle))">
                 Add Flashcard
             </button>
         </div>
@@ -35,7 +36,7 @@
         <label>Search</label>
         <input type="search" @bind="SearchText" @bind:event="oninput" />
     </div>
-    @if (flashcards.Length > 0)
+    @if (flashcards?.Count() > 0)
     {
         <div class="m-2 flex flex-col">
             <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -65,6 +66,8 @@
 </div>
 
 @code {
+    [Inject] public IState<ComponentsState> ComponentsState { get; set; } = null!;
+    [Inject] public StateFacade Facade { get; set; } = null!;
     private ElementReference inpTitle;
     private ElementReference inpCardBackTitle;
     private string newTitle = string.Empty;
@@ -80,29 +83,20 @@
             StateHasChanged();
         }
     }
-    private bool busy = false;
-    private Flashcard[] flashcards = Array.Empty<Flashcard>();
-    private Flashcard[] filteredFlashcards => this.flashcards.Where((item) => string.IsNullOrEmpty(searchText) || item.Title.ToLowerInvariant().Contains(searchText.ToLowerInvariant()) || item.CardBackTitle.ToLowerInvariant().Contains(searchText.ToLowerInvariant())).OrderByDescending(item => item.Title.ToLowerInvariant() == searchText.ToLowerInvariant() || item.CardBackTitle.ToLowerInvariant() == searchText.ToLowerInvariant()).ThenByDescending(item => item.Id).ToArray();
-    protected override async Task OnInitializedAsync()
+    private IEnumerable<Flashcard>? flashcards => ComponentsState.Value.CurrentFlashcards;
+    private Flashcard[] filteredFlashcards
     {
-        await RefreshUiAsync();
-        await base.OnInitializedAsync();
-    }
-
-    protected override Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (!firstRender)
+        get
         {
+            return this.flashcards?.Where((item) => string.IsNullOrEmpty(searchText) || item.Title.ToLowerInvariant().Contains(searchText.ToLowerInvariant()) || item.CardBackTitle.ToLowerInvariant().Contains(searchText.ToLowerInvariant())).OrderByDescending(item => item.Title.ToLowerInvariant() == searchText.ToLowerInvariant() || item.CardBackTitle.ToLowerInvariant() == searchText.ToLowerInvariant()).ThenByDescending(item => item.Id).ToArray() ?? Array.Empty<Flashcard>();
         }
-        return base.OnAfterRenderAsync(firstRender);
     }
 
-    private async Task RefreshUiAsync()
+    protected override void OnAfterRender(bool firstRender)
     {
-        busy = true;
-        flashcards = await Service.GetFlashcardsAsync();
-        busy = false;
-        StateHasChanged();
+        if(firstRender && ComponentsState.Value.CurrentFlashcards == null){
+            Facade.LoadFlashcards();
+        }
     }
 
     public async void EnterSubmitAsync(KeyboardEventArgs e)
@@ -115,13 +109,10 @@
 
     private async Task AddFlashcardAsync()
     {
-        if (!string.IsNullOrWhiteSpace(newTitle) && !string.IsNullOrWhiteSpace(newCardBackTitle) && !flashcards.Any((item) => item.Title.Equals(newTitle, StringComparison.OrdinalIgnoreCase)))
+        if (!string.IsNullOrWhiteSpace(newTitle) && !string.IsNullOrWhiteSpace(newCardBackTitle) && flashcards?.Any((item) => item.Title.Equals(newTitle, StringComparison.OrdinalIgnoreCase)) != true)
         {
-            busy = true;
-            await Service.AddFlashcardAsync(newTitle, newCardBackTitle);
-            busy = false;
+            Facade.AddFlashcard(new Flashcard() { Title = newTitle, CardBackTitle = newCardBackTitle });
             newTitle = newCardBackTitle = string.Empty;
-            await RefreshUiAsync();
             await inpTitle.FocusAsync();
         }
     }

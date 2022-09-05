@@ -1,4 +1,5 @@
-﻿@using BlazorDownloadFile
+﻿@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+@using BlazorDownloadFile
 @using CardStudyBlazor.Domain
 @using Microsoft.AspNetCore.Components.Web
 @using Microsoft.AspNetCore.Components.Web.Virtualization
@@ -62,17 +63,19 @@
 }
 
 @code {
+    [Inject] public IState<ComponentsState> ComponentsState { get; set; } = null!;
+    [Inject] public StateFacade Facade { get; set; } = null!;
     public int Language { get; set; }
     public int Amount { get; set; } = 20;
-    public Flashcard[]? Flashcards { get; set; }
+    public IEnumerable<Flashcard>? Flashcards => ComponentsState.Value.CurrentFlashcards;
     public Random rnd = new Random();
     public Flashcard[]? RandomFlashcards => Flashcards?.OrderBy(x => rnd.Next()).Take(Amount).ToArray();
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender)
+        if (firstRender && ComponentsState.Value.CurrentFlashcards == null)
         {
-            Flashcards = await Service.GetFlashcardsAsync();
+            Facade.LoadFlashcards();
         }
         await base.OnAfterRenderAsync(firstRender);
     }

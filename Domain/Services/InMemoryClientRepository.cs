@@ -14,6 +14,23 @@ namespace CardStudyBlazor.Domain.Services
         private readonly List<Flashcard> flashcards = new();
         private readonly List<Category> categories = new();
 
+        public InMemoryClientRepository()
+        {
+            categories.Add(new Category()
+            {
+                Id = 1,
+                Name = "TestName",
+                Description = "TestDescription"
+            });
+
+            flashcards.Add(new Flashcard()
+            {
+                Id = 1,
+                Title = "TestTitle",
+                CardBackTitle = "TestCardBackTitle"
+            });
+        }
+
         public async Task<T> AddAsync<T>(HttpClient client, T item) where T : class
         {
             await Task.CompletedTask;

@@ -1,5 +1,5 @@
-﻿@using CardStudyBlazor.Domain.Models
-@using CardStudyBlazor.Domain.Services
+﻿@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
 
 @if (Item != null)
 {
@@ -14,16 +14,19 @@
 }
 
 @code {
+    [Inject] public IState<ComponentsState> ComponentsState { get; set; } = null!;
+    [Inject] public StateFacade Facade { get; set; } = null!;
+
     [Parameter]
     public Category? Item { get; set; }
 
     private async Task RemoveCategoryAsync()
     {
+        await Task.CompletedTask;
         if (Item == null)
         {
             return;
         }
-        await Service.RemoveCategoryAsync(Item.Id);
-        StateHasChanged();
+        Facade.RemoveCategory(Item);
     }
 }

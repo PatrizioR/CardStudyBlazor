@@ -1,4 +1,5 @@
-﻿@using BlazorDownloadFile
+﻿@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+@using BlazorDownloadFile
 @using CardStudyBlazor.Domain
 @using Microsoft.AspNetCore.Components.Web
 @using Microsoft.AspNetCore.Components.Web.Virtualization
@@ -16,17 +17,17 @@
             <input class="w-1/5" name="inpTitle" @ref="@inpName"
                    autofocus
                    type="text"
-                   disabled="@busy"
+                   disabled="@ComponentsState.Value.IsLoading"
                    @bind="newName"
                    @bind:event="oninput" />
             <label for="inpDescription">Enter description:</label>
             <input class="w-1/5" name="inpDescription" @ref="@inpDescription"
                    type="text"
-                   disabled="@busy"
+                   disabled="@ComponentsState.Value.IsLoading"
                    @bind="newDescription"
                    @bind:event="oninput" />
             <button class="disabled:bg-green-100 disabled:cursor-not-allowed px-3 py-2 w-48 cursor-pointer rounded-2xl bg-green-200 hover:bg-green-400 shadow-md text-center" @onclick="@(async ()=> await AddCategoryAsync())"
-                    disabled="@(busy || string.IsNullOrWhiteSpace(newName)|| string.IsNullOrWhiteSpace(newDescription))">
+                    disabled="@(@ComponentsState.Value.IsLoading || string.IsNullOrWhiteSpace(newName)|| string.IsNullOrWhiteSpace(newDescription))">
                 Add Category
             </button>
         </div>
@@ -35,7 +36,7 @@
         <label>Search</label>
         <input type="search" @bind="SearchText" @bind:event="oninput" />
     </div>
-    @if (categories.Length > 0)
+    @if (categories?.Count() > 0)
     {
         <div class="m-2 flex flex-col">
             <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -65,6 +66,8 @@
 </div>
 
 @code {
+    [Inject] public IState<ComponentsState> ComponentsState { get; set; } = null!;
+    [Inject] public StateFacade Facade { get; set; } = null!;
     private ElementReference inpName;
     private ElementReference inpDescription;
     private string newName = string.Empty;
@@ -83,29 +86,16 @@
             StateHasChanged();
         }
     }
-    private bool busy = false;
-    private Category[] categories = Array.Empty<Category>();
-    private Category[] filteredCategories => this.categories.Where((item) => string.IsNullOrEmpty(searchText) || item.Name.ToLowerInvariant().Contains(searchText.ToLowerInvariant()) || item.Description?.ToLowerInvariant().Contains(searchText.ToLowerInvariant()) == true).OrderByDescending(item => item.Name.ToLowerInvariant() == searchText.ToLowerInvariant() || item.Description?.ToLowerInvariant() == searchText.ToLowerInvariant()).ThenByDescending(item => item.Id).ToArray();
-    protected override async Task OnInitializedAsync()
-    {
-        await RefreshUiAsync();
-        await base.OnInitializedAsync();
-    }
+    private IEnumerable<Category>? categories => ComponentsState.Value.CurrentCategories;
+    private Category[] filteredCategories => this.categories?.Where((item) => string.IsNullOrEmpty(searchText) || item.Name.ToLowerInvariant().Contains(searchText.ToLowerInvariant()) || item.Description?.ToLowerInvariant().Contains(searchText.ToLowerInvariant()) == true).OrderByDescending(item => item.Name.ToLowerInvariant() == searchText.ToLowerInvariant() || item.Description?.ToLowerInvariant() == searchText.ToLowerInvariant()).ThenByDescending(item => item.Id).ToArray() ?? Array.Empty<Category>();
 
     protected override Task OnAfterRenderAsync(bool firstRender)
     {
-        if (!firstRender)
+        if (firstRender && ComponentsState.Value.CurrentCategories == null)
         {
+            Facade.LoadCategories();
         }
         return base.OnAfterRenderAsync(firstRender);
-    }
-
-    private async Task RefreshUiAsync()
-    {
-        busy = true;
-        categories = await Service.GetCategoriesAsync();
-        busy = false;
-        StateHasChanged();
     }
 
     public async void EnterSubmitAsync(KeyboardEventArgs e)
@@ -118,13 +108,10 @@
 
     private async Task AddCategoryAsync()
     {
-        if (!string.IsNullOrWhiteSpace(newName) && !string.IsNullOrWhiteSpace(newDescription) && !categories.Any((item) => item.Name.Equals(newName, StringComparison.OrdinalIgnoreCase)))
+        if (!string.IsNullOrWhiteSpace(newName) && !string.IsNullOrWhiteSpace(newDescription) && categories?.Any((item) => item.Name.Equals(newName, StringComparison.OrdinalIgnoreCase)) != true)
         {
-            busy = true;
-            await Service.AddCategoryAsync(newName, newDescription);
-            busy = false;
+            Facade.AddCategory(new Category() { Name = newName, Description = newDescription });
             newName = newDescription = string.Empty;
-            await RefreshUiAsync();
             await inpName.FocusAsync();
         }
     }
