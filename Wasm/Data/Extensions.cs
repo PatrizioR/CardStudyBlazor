@@ -1,4 +1,4 @@
-﻿using CardStudyBlazor.Domain;
+﻿using CardStudyBlazor.Domain.Context;
 
 namespace CardStudyBlazor.Wasm.Data
 {

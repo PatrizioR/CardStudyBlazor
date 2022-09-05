@@ -1,26 +1,54 @@
-﻿<div class="w-full">
+﻿@inject IBlazorDownloadFileService BlazorDownloadFileService
+
+<div class="w-full">
     <nav class="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
         <div class="container flex flex-wrap justify-between items-center mx-auto">
             <div class="flex items-center">
                 <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Card Study</span>
                 <ul class="flex flex-row px-2 ml-2 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                     <li>
-                        <NavLink class="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded text-blue-700 p-0 dark:text-white" href="" Match="NavLinkMatch.All">
+                        <NavLink class="block py-2 pr-4 pl-3 mr-1 text-white bg-blue-700 rounded text-blue-700 p-0 dark:text-white" href="" Match="NavLinkMatch.All">
                             <span aria-hidden="true"></span> Flashcards
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink class="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded text-blue-700 p-0 dark:text-white" href="words">
+                        <NavLink class="block py-2 pr-4 pl-3 mr-1 text-white bg-blue-700 rounded text-blue-700 p-0 dark:text-white" href="categories">
+                            <span aria-hidden="true"></span> Categories
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink class="block py-2 pr-4 pl-3 mr-1 text-white bg-blue-700 rounded text-blue-700 p-0 dark:text-white" href="words">
                             <span aria-hidden="true"></span> Words
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink class="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded text-blue-700 p-0 dark:text-white" href="study">
+                        <NavLink class="block py-2 pr-4 pl-3 mr-1 text-white bg-blue-700 rounded text-blue-700 p-0 dark:text-white" href="study">
                             <span aria-hidden="true"></span> Study
                         </NavLink>
+                    </li>
+                    <li>
+                        <div title="Download" @onclick="DownloadClickAsync" class="cursor-pointer block py-2 pr-4 mr-1 pl-3 text-white bg-blue-700 rounded text-blue-700 p-0 dark:text-white">
+                            <svg width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 18a3.5 3.5 0 0 0 0-7h-1A5 4.5 0 0 0 7 9a4.6 4.4 0 0 0-2.1 8.4M12 13v9m-3-3l3 3l3-3" /></svg>
+                        </div>
+                    </li>
+                    <li>
+                        <div title="Upload" @onclick="UploadClickAsync" class="cursor-pointer block py-2 pr-4 pl-3 text-white bg-blue-700 rounded text-blue-700 p-0 dark:text-white">
+                            <svg width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19.35 10.04A7.49 7.49 0 0 0 12 4C9.11 4 6.6 5.64 5.35 8.04A5.994 5.994 0 0 0 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5c0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4c0-2.05 1.53-3.76 3.56-3.97l1.07-.11l.5-.95A5.469 5.469 0 0 1 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5l1.53.11A2.98 2.98 0 0 1 22 15c0 1.65-1.35 3-3 3zM8 13h2.55v3h2.9v-3H16l-4-4z" /></svg>
+                        </div>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 </div>
+
+@code{
+    private async Task DownloadClickAsync(){
+        await Task.CompletedTask;
+
+    }
+
+    private async Task UploadClickAsync(){
+        await Task.CompletedTask;
+    }
+}

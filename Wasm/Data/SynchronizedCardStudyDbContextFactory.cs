@@ -1,4 +1,4 @@
-﻿using CardStudyBlazor.Domain;
+﻿using CardStudyBlazor.Domain.Context;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.JSInterop;

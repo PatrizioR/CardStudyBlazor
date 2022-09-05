@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CardStudyBlazor.Domain
+namespace CardStudyBlazor.Domain.Configuration
 {
     public static class JsonConfiguration
     {

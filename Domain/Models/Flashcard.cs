@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 
-namespace CardStudyBlazor.Domain
+namespace CardStudyBlazor.Domain.Models
 {
     public class Flashcard
     {
@@ -19,5 +19,7 @@ namespace CardStudyBlazor.Domain
         [JsonRequired]
         [JsonProperty("cardBackTitle", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public string CardBackTitle { get; set; } = null!;
+
+        //public Category? Category { get; set; }
     }
 }
