@@ -1,0 +1,1137 @@
+[
+  {
+    "id": 8,
+    "title": "karena",
+    "cardBackTitle": "weil"
+  },
+  {
+    "id": 9,
+    "title": "ajak",
+    "cardBackTitle": "einladen"
+  },
+  {
+    "id": 10,
+    "title": "lintasan",
+    "cardBackTitle": "Spur, Gleis"
+  },
+  {
+    "id": 11,
+    "title": "kelas",
+    "cardBackTitle": "Klasse"
+  },
+  {
+    "id": 12,
+    "title": "sampah",
+    "cardBackTitle": "Müll"
+  },
+  {
+    "id": 14,
+    "title": "ratu",
+    "cardBackTitle": "Königin"
+  },
+  {
+    "id": 15,
+    "title": "bekas",
+    "cardBackTitle": "benutzt"
+  },
+  {
+    "id": 16,
+    "title": "berbunyi",
+    "cardBackTitle": "klingt"
+  },
+  {
+    "id": 17,
+    "title": "beres",
+    "cardBackTitle": "OK"
+  },
+  {
+    "id": 18,
+    "title": "kepadanya",
+    "cardBackTitle": "zu ihm, an ihn"
+  },
+  {
+    "id": 19,
+    "title": "masih",
+    "cardBackTitle": "immer noch"
+  },
+  {
+    "id": 20,
+    "title": "perempuan",
+    "cardBackTitle": "Frau"
+  },
+  {
+    "id": 21,
+    "title": "setiap",
+    "cardBackTitle": "jede, alle"
+  },
+  {
+    "id": 22,
+    "title": "tanda",
+    "cardBackTitle": "unterschreiben"
+  },
+  {
+    "id": 23,
+    "title": "angkat",
+    "cardBackTitle": "Aufzug"
+  },
+  {
+    "id": 24,
+    "title": "bangkunya",
+    "cardBackTitle": "die Bank"
+  },
+  {
+    "id": 25,
+    "title": "barang",
+    "cardBackTitle": "Waren"
+  },
+  {
+    "id": 26,
+    "title": "agak",
+    "cardBackTitle": "eher, ziemlich"
+  },
+  {
+    "id": 27,
+    "title": "berambut",
+    "cardBackTitle": "haarig"
+  },
+  {
+    "id": 28,
+    "title": "mau",
+    "cardBackTitle": "wollen"
+  },
+  {
+    "id": 29,
+    "title": "main",
+    "cardBackTitle": "spielen"
+  },
+  {
+    "id": 30,
+    "title": "sekolah",
+    "cardBackTitle": "Schule"
+  },
+  {
+    "id": 31,
+    "title": "hore",
+    "cardBackTitle": "Hurra"
+  },
+  {
+    "id": 32,
+    "title": "apa",
+    "cardBackTitle": "was"
+  },
+  {
+    "id": 33,
+    "title": "lari",
+    "cardBackTitle": "rennen"
+  },
+  {
+    "id": 34,
+    "title": "pemenang",
+    "cardBackTitle": "Gewinner"
+  },
+  {
+    "id": 35,
+    "title": "ikut",
+    "cardBackTitle": "folgen"
+  },
+  {
+    "id": 36,
+    "title": "kata",
+    "cardBackTitle": "sagen"
+  },
+  {
+    "id": 37,
+    "title": "boleh",
+    "cardBackTitle": "können"
+  },
+  {
+    "id": 38,
+    "title": "tawon",
+    "cardBackTitle": "Wespe"
+  },
+  {
+    "id": 39,
+    "title": "semua",
+    "cardBackTitle": "alle"
+  },
+  {
+    "id": 40,
+    "title": "sahut",
+    "cardBackTitle": "sagen"
+  },
+  {
+    "id": 41,
+    "title": "pemenangnya",
+    "cardBackTitle": "der Gewinner"
+  },
+  {
+    "id": 42,
+    "title": "sedang",
+    "cardBackTitle": "Frühling"
+  },
+  {
+    "id": 43,
+    "title": "tanya",
+    "cardBackTitle": "fragen"
+  },
+  {
+    "id": 44,
+    "title": "lomba",
+    "cardBackTitle": "Wettkampf"
+  },
+  {
+    "id": 45,
+    "title": "jawab",
+    "cardBackTitle": "antworten"
+  },
+  {
+    "id": 46,
+    "title": "tak",
+    "cardBackTitle": "nicht"
+  },
+  {
+    "id": 47,
+    "title": "pak",
+    "cardBackTitle": "mein Herr"
+  },
+  {
+    "id": 48,
+    "title": "bel",
+    "cardBackTitle": "Glocke, Klingel"
+  },
+  {
+    "id": 49,
+    "title": "masuk",
+    "cardBackTitle": "eintreten"
+  },
+  {
+    "id": 50,
+    "title": "mencapai",
+    "cardBackTitle": "erreichen, erlangen"
+  },
+  {
+    "id": 51,
+    "title": "kalau",
+    "cardBackTitle": "wenn"
+  },
+  {
+    "id": 52,
+    "title": "dongeng",
+    "cardBackTitle": "Märchen"
+  },
+  {
+    "id": 53,
+    "title": "halo",
+    "cardBackTitle": "Hallo"
+  },
+  {
+    "id": 54,
+    "title": "untuk",
+    "cardBackTitle": "für"
+  },
+  {
+    "id": 55,
+    "title": "pada",
+    "cardBackTitle": "an, bei, auf"
+  },
+  {
+    "id": 56,
+    "title": "salam",
+    "cardBackTitle": "Grüße"
+  },
+  {
+    "id": 57,
+    "title": "kakak",
+    "cardBackTitle": "älterer Bruder"
+  },
+  {
+    "id": 58,
+    "title": "terima kasih",
+    "cardBackTitle": "Danke"
+  },
+  {
+    "id": 59,
+    "title": "aku",
+    "cardBackTitle": "Ich (inform.)"
+  },
+  {
+    "id": 60,
+    "title": "bunda",
+    "cardBackTitle": "Mutter"
+  },
+  {
+    "id": 61,
+    "title": "nenek",
+    "cardBackTitle": "Großmutter"
+  },
+  {
+    "id": 62,
+    "title": "usul",
+    "cardBackTitle": "Vorschlag"
+  },
+  {
+    "id": 63,
+    "title": "permen",
+    "cardBackTitle": "Süßigkeit"
+  },
+  {
+    "id": 64,
+    "title": "majalah",
+    "cardBackTitle": "Magazin"
+  },
+  {
+    "id": 65,
+    "title": "redaksi",
+    "cardBackTitle": "Redakteur"
+  },
+  {
+    "id": 66,
+    "title": "saya",
+    "cardBackTitle": "Ich (form.)"
+  },
+  {
+    "id": 67,
+    "title": "ya",
+    "cardBackTitle": "Ja"
+  },
+  {
+    "id": 68,
+    "title": "hai",
+    "cardBackTitle": "Hi"
+  },
+  {
+    "id": 69,
+    "title": "lezat",
+    "cardBackTitle": "köstlich"
+  },
+  {
+    "id": 70,
+    "title": "terlihat",
+    "cardBackTitle": "sichtbar, gesehen"
+  },
+  {
+    "id": 71,
+    "title": "kelinci",
+    "cardBackTitle": "Hase"
+  },
+  {
+    "id": 72,
+    "title": "abu",
+    "cardBackTitle": "Asche"
+  },
+  {
+    "id": 73,
+    "title": "cokelat",
+    "cardBackTitle": "Schokolade"
+  },
+  {
+    "id": 74,
+    "title": "bulu",
+    "cardBackTitle": "Haare, Fell, Feder"
+  },
+  {
+    "id": 75,
+    "title": "suka",
+    "cardBackTitle": "mögen"
+  },
+  {
+    "id": 76,
+    "title": "di",
+    "cardBackTitle": "in, an, bei, um"
+  },
+  {
+    "id": 77,
+    "title": "yang",
+    "cardBackTitle": "welche, jene, das"
+  },
+  {
+    "id": 78,
+    "title": "raksasa",
+    "cardBackTitle": "Riese"
+  },
+  {
+    "id": 79,
+    "title": "panjang",
+    "cardBackTitle": "lang"
+  },
+  {
+    "id": 80,
+    "title": "kandang",
+    "cardBackTitle": "Käfig"
+  },
+  {
+    "id": 81,
+    "title": "bisa",
+    "cardBackTitle": "können"
+  },
+  {
+    "id": 82,
+    "title": "ia",
+    "cardBackTitle": "er, sie, es"
+  },
+  {
+    "id": 83,
+    "title": "lebih",
+    "cardBackTitle": "mehr, über, weiterhin"
+  },
+  {
+    "id": 84,
+    "title": "sekitar",
+    "cardBackTitle": "ungefähr, herum"
+  },
+  {
+    "id": 85,
+    "title": "ini",
+    "cardBackTitle": "diese"
+  },
+  {
+    "id": 86,
+    "title": "dan",
+    "cardBackTitle": "und"
+  },
+  {
+    "id": 87,
+    "title": "anak",
+    "cardBackTitle": "Kind"
+  },
+  {
+    "id": 88,
+    "title": "besar",
+    "cardBackTitle": "groß"
+  },
+  {
+    "id": 89,
+    "title": "hari",
+    "cardBackTitle": "Tag"
+  },
+  {
+    "id": 90,
+    "title": "bobo",
+    "cardBackTitle": "schlafen"
+  },
+  {
+    "id": 91,
+    "title": "ulang",
+    "cardBackTitle": "wiederholen"
+  },
+  {
+    "id": 92,
+    "title": "siapa",
+    "cardBackTitle": "wer"
+  },
+  {
+    "id": 93,
+    "title": "akan",
+    "cardBackTitle": "werden"
+  },
+  {
+    "id": 94,
+    "title": "ucap",
+    "cardBackTitle": "sagen"
+  },
+  {
+    "id": 95,
+    "title": "emak",
+    "cardBackTitle": "Mama"
+  },
+  {
+    "id": 96,
+    "title": "kue",
+    "cardBackTitle": "Kuchen"
+  },
+  {
+    "id": 97,
+    "title": "ada",
+    "cardBackTitle": "es gibt, da ist"
+  },
+  {
+    "id": 98,
+    "title": "bola",
+    "cardBackTitle": "Ball"
+  },
+  {
+    "id": 99,
+    "title": "teman",
+    "cardBackTitle": "Freund"
+  },
+  {
+    "id": 100,
+    "title": "kami",
+    "cardBackTitle": "wir"
+  },
+  {
+    "id": 101,
+    "title": "mereka",
+    "cardBackTitle": "sie"
+  },
+  {
+    "id": 102,
+    "title": "ke",
+    "cardBackTitle": "zu, nach"
+  },
+  {
+    "id": 103,
+    "title": "baik",
+    "cardBackTitle": "gut"
+  },
+  {
+    "id": 104,
+    "title": "saja",
+    "cardBackTitle": "gerade, nun, nur"
+  },
+  {
+    "id": 105,
+    "title": "pikir",
+    "cardBackTitle": "denken"
+  },
+  {
+    "id": 106,
+    "title": "tiba",
+    "cardBackTitle": "ankommen"
+  },
+  {
+    "id": 107,
+    "title": "esok",
+    "cardBackTitle": "Morgen"
+  },
+  {
+    "id": 108,
+    "title": "ketika",
+    "cardBackTitle": "sobald, wann, wenn"
+  },
+  {
+    "id": 111,
+    "title": "malam",
+    "cardBackTitle": "Nacht"
+  },
+  {
+    "id": 112,
+    "title": "belang",
+    "cardBackTitle": "gestreift"
+  },
+  {
+    "id": 113,
+    "title": "bintang",
+    "cardBackTitle": "Stern"
+  },
+  {
+    "id": 114,
+    "title": "kuning",
+    "cardBackTitle": "Gelb"
+  },
+  {
+    "id": 115,
+    "title": "pintu",
+    "cardBackTitle": "Tür"
+  },
+  {
+    "id": 116,
+    "title": "gudang",
+    "cardBackTitle": "Lager"
+  },
+  {
+    "id": 117,
+    "title": "ujar",
+    "cardBackTitle": "sagen"
+  },
+  {
+    "id": 118,
+    "title": "penculik",
+    "cardBackTitle": "Entführer"
+  },
+  {
+    "id": 119,
+    "title": "segera",
+    "cardBackTitle": "schnell"
+  },
+  {
+    "id": 120,
+    "title": "membuka",
+    "cardBackTitle": "offen, geöffnet"
+  },
+  {
+    "id": 121,
+    "title": "mendapat",
+    "cardBackTitle": "bekommen"
+  },
+  {
+    "id": 122,
+    "title": "dari",
+    "cardBackTitle": "von, ab, aus"
+  },
+  {
+    "id": 123,
+    "title": "atas",
+    "cardBackTitle": "auf, über, für"
+  },
+  {
+    "id": 124,
+    "title": "itu",
+    "cardBackTitle": "jenes"
+  },
+  {
+    "id": 125,
+    "title": "gumam",
+    "cardBackTitle": "nuscheln"
+  },
+  {
+    "id": 126,
+    "title": "terikat",
+    "cardBackTitle": "gefesselt"
+  },
+  {
+    "id": 127,
+    "title": "berjaga",
+    "cardBackTitle": "Wache stehen"
+  },
+  {
+    "id": 129,
+    "title": "juru",
+    "cardBackTitle": "Handwerker, Techniker"
+  },
+  {
+    "id": 130,
+    "title": "selang",
+    "cardBackTitle": "Schlauch"
+  },
+  {
+    "id": 131,
+    "title": "tetap",
+    "cardBackTitle": "dauerhaft, immer"
+  },
+  {
+    "id": 132,
+    "title": "daging",
+    "cardBackTitle": "Fleisch"
+  },
+  {
+    "id": 133,
+    "title": "dengan",
+    "cardBackTitle": "mit"
+  },
+  {
+    "id": 134,
+    "title": "adalah",
+    "cardBackTitle": "ist"
+  },
+  {
+    "id": 135,
+    "title": "lalu",
+    "cardBackTitle": "dann"
+  },
+  {
+    "id": 136,
+    "title": "buntel",
+    "cardBackTitle": "Verpackung"
+  },
+  {
+    "id": 137,
+    "title": "kerang",
+    "cardBackTitle": "Hülse"
+  },
+  {
+    "id": 138,
+    "title": "bandeng",
+    "cardBackTitle": "Milchfisch"
+  },
+  {
+    "id": 139,
+    "title": "dibuat",
+    "cardBackTitle": "gemacht"
+  },
+  {
+    "id": 140,
+    "title": "digunakan",
+    "cardBackTitle": "gebraucht"
+  },
+  {
+    "id": 141,
+    "title": "ikan",
+    "cardBackTitle": "Fisch"
+  },
+  {
+    "id": 142,
+    "title": "bumbu",
+    "cardBackTitle": "würzen"
+  },
+  {
+    "id": 143,
+    "title": "lalat",
+    "cardBackTitle": "Fliege"
+  },
+  {
+    "id": 144,
+    "title": "berasal",
+    "cardBackTitle": "entstanden"
+  },
+  {
+    "id": 145,
+    "title": "membuat",
+    "cardBackTitle": "machen"
+  },
+  {
+    "id": 146,
+    "title": "ayam",
+    "cardBackTitle": "Huhn"
+  },
+  {
+    "id": 147,
+    "title": "sapi",
+    "cardBackTitle": "Kuh"
+  },
+  {
+    "id": 148,
+    "title": "kecil",
+    "cardBackTitle": "klein"
+  },
+  {
+    "id": 149,
+    "title": "rasanya",
+    "cardBackTitle": "sich anfühlen"
+  },
+  {
+    "id": 150,
+    "title": "campuran",
+    "cardBackTitle": "Mischung"
+  },
+  {
+    "id": 151,
+    "title": "tusuk",
+    "cardBackTitle": "Stich"
+  },
+  {
+    "id": 152,
+    "title": "raja",
+    "cardBackTitle": "König"
+  },
+  {
+    "id": 153,
+    "title": "putri",
+    "cardBackTitle": "Prinzessin"
+  },
+  {
+    "id": 154,
+    "title": "menjadi",
+    "cardBackTitle": "wird (er/sie/es)"
+  },
+  {
+    "id": 155,
+    "title": "putra",
+    "cardBackTitle": "Sohn"
+  },
+  {
+    "id": 156,
+    "title": "terkena",
+    "cardBackTitle": "erwischt"
+  },
+  {
+    "id": 157,
+    "title": "lebah",
+    "cardBackTitle": "Biene"
+  },
+  {
+    "id": 158,
+    "title": "istana",
+    "cardBackTitle": "Palast"
+  },
+  {
+    "id": 159,
+    "title": "mutiara",
+    "cardBackTitle": "Perle"
+  },
+  {
+    "id": 160,
+    "title": "berubah",
+    "cardBackTitle": "geändert"
+  },
+  {
+    "id": 161,
+    "title": "semut",
+    "cardBackTitle": "Ameise"
+  },
+  {
+    "id": 162,
+    "title": "kutuk",
+    "cardBackTitle": "Fluch"
+  },
+  {
+    "id": 163,
+    "title": "cerita",
+    "cardBackTitle": "Geschichte"
+  },
+  {
+    "id": 164,
+    "title": "tentang",
+    "cardBackTitle": "um"
+  },
+  {
+    "id": 165,
+    "title": "bersama",
+    "cardBackTitle": "zusammen"
+  },
+  {
+    "id": 166,
+    "title": "seisi",
+    "cardBackTitle": "ganz"
+  },
+  {
+    "id": 167,
+    "title": "batu",
+    "cardBackTitle": "Stein"
+  },
+  {
+    "id": 168,
+    "title": "kakek",
+    "cardBackTitle": "Großvater"
+  },
+  {
+    "id": 169,
+    "title": "sihir",
+    "cardBackTitle": "Magie"
+  },
+  {
+    "id": 170,
+    "title": "menemukan",
+    "cardBackTitle": "finden"
+  },
+  {
+    "id": 171,
+    "title": "hutan",
+    "cardBackTitle": "Wald"
+  },
+  {
+    "id": 172,
+    "title": "kamu",
+    "cardBackTitle": "du"
+  },
+  {
+    "id": 173,
+    "title": "mamat",
+    "cardBackTitle": "Mutter"
+  },
+  {
+    "id": 174,
+    "title": "berdiri",
+    "cardBackTitle": "aufstehen"
+  },
+  {
+    "id": 175,
+    "title": "sudah",
+    "cardBackTitle": "schon"
+  },
+  {
+    "id": 176,
+    "title": "plastik",
+    "cardBackTitle": "Plastik"
+  },
+  {
+    "id": 177,
+    "title": "entah",
+    "cardBackTitle": "wer weiß"
+  },
+  {
+    "id": 178,
+    "title": "memulainya",
+    "cardBackTitle": "starte es"
+  },
+  {
+    "id": 179,
+    "title": "hingga",
+    "cardBackTitle": "bis um"
+  },
+  {
+    "id": 180,
+    "title": "empat",
+    "cardBackTitle": "vier"
+  },
+  {
+    "id": 181,
+    "title": "menjulukinya",
+    "cardBackTitle": "ihm einen Spitznamen gegeben"
+  },
+  {
+    "id": 182,
+    "title": "seingatnya",
+    "cardBackTitle": "wie er sich erinnert"
+  },
+  {
+    "id": 183,
+    "title": "semenjak",
+    "cardBackTitle": "seit"
+  },
+  {
+    "id": 184,
+    "title": "memunguti",
+    "cardBackTitle": "aufheben"
+  },
+  {
+    "id": 185,
+    "title": "ditemukan",
+    "cardBackTitle": "gefunden"
+  },
+  {
+    "id": 186,
+    "title": "dalam",
+    "cardBackTitle": "in"
+  },
+  {
+    "id": 187,
+    "title": "maupun",
+    "cardBackTitle": "noch"
+  },
+  {
+    "id": 188,
+    "title": "teras",
+    "cardBackTitle": "Terrasse"
+  },
+  {
+    "id": 189,
+    "title": "perhatian",
+    "cardBackTitle": "Aufmerksamkeit"
+  },
+  {
+    "id": 190,
+    "title": "telah",
+    "cardBackTitle": "hat"
+  },
+  {
+    "id": 191,
+    "title": "mulai",
+    "cardBackTitle": "Anfang"
+  },
+  {
+    "id": 192,
+    "title": "berkoar",
+    "cardBackTitle": "schreien"
+  },
+  {
+    "id": 193,
+    "title": "ambang",
+    "cardBackTitle": "Schwelle"
+  },
+  {
+    "id": 194,
+    "title": "terbuka",
+    "cardBackTitle": "offen"
+  },
+  {
+    "id": 195,
+    "title": "tutup",
+    "cardBackTitle": "abgeschlossen"
+  },
+  {
+    "id": 196,
+    "title": "tidak",
+    "cardBackTitle": "nein"
+  },
+  {
+    "id": 197,
+    "title": "kepada",
+    "cardBackTitle": "zu, nach"
+  },
+  {
+    "id": 198,
+    "title": "uang",
+    "cardBackTitle": "Geld"
+  },
+  {
+    "id": 199,
+    "title": "bu",
+    "cardBackTitle": "Fräulein"
+  },
+  {
+    "id": 200,
+    "title": "guru",
+    "cardBackTitle": "Lehrer"
+  },
+  {
+    "id": 201,
+    "title": "penghargaan",
+    "cardBackTitle": "Dankbarkeit"
+  },
+  {
+    "id": 202,
+    "title": "banyak",
+    "cardBackTitle": "sehr, viel"
+  },
+  {
+    "id": 203,
+    "title": "cuma",
+    "cardBackTitle": "nur, erst"
+  },
+  {
+    "id": 204,
+    "title": "sembari",
+    "cardBackTitle": "während"
+  },
+  {
+    "id": 205,
+    "title": "depan",
+    "cardBackTitle": "Front"
+  },
+  {
+    "id": 206,
+    "title": "mengumpulkan",
+    "cardBackTitle": "sammeln"
+  },
+  {
+    "id": 207,
+    "title": "namun",
+    "cardBackTitle": "jedoch, dennoch"
+  },
+  {
+    "id": 208,
+    "title": "ibunya",
+    "cardBackTitle": "ihre Mutter"
+  },
+  {
+    "id": 209,
+    "title": "hanya",
+    "cardBackTitle": "nur, erst"
+  },
+  {
+    "id": 210,
+    "title": "makan",
+    "cardBackTitle": "essen"
+  },
+  {
+    "id": 211,
+    "title": "sikap",
+    "cardBackTitle": "Einstellung"
+  },
+  {
+    "id": 212,
+    "title": "temannya",
+    "cardBackTitle": "sein Freund"
+  },
+  {
+    "id": 213,
+    "title": "berupa",
+    "cardBackTitle": "in Form von"
+  },
+  {
+    "id": 214,
+    "title": "alat",
+    "cardBackTitle": "Werkzeug, Hilfsmittel"
+  },
+  {
+    "id": 215,
+    "title": "tersenyum",
+    "cardBackTitle": "lächeln"
+  },
+  {
+    "id": 216,
+    "title": "merasa",
+    "cardBackTitle": "fühlen"
+  },
+  {
+    "id": 217,
+    "title": "pun",
+    "cardBackTitle": "sogar, selbst"
+  },
+  {
+    "id": 218,
+    "title": "wartawan",
+    "cardBackTitle": "Journalist"
+  },
+  {
+    "id": 219,
+    "title": "rumah",
+    "cardBackTitle": "Haus"
+  },
+  {
+    "id": 220,
+    "title": "surat",
+    "cardBackTitle": "Brief"
+  },
+  {
+    "id": 221,
+    "title": "bata",
+    "cardBackTitle": "Ziegel"
+  },
+  {
+    "id": 222,
+    "title": "merah",
+    "cardBackTitle": "rot"
+  },
+  {
+    "id": 223,
+    "title": "dia",
+    "cardBackTitle": "er, sie, es"
+  },
+  {
+    "id": 224,
+    "title": "pasti",
+    "cardBackTitle": "sicher"
+  },
+  {
+    "id": 225,
+    "title": "bernama",
+    "cardBackTitle": "benannt, genannt"
+  },
+  {
+    "id": 226,
+    "title": "wanita",
+    "cardBackTitle": "Frau"
+  },
+  {
+    "id": 227,
+    "title": "tinggal",
+    "cardBackTitle": "leben, wohnen"
+  },
+  {
+    "id": 228,
+    "title": "sekarang",
+    "cardBackTitle": "jetzt, nun"
+  },
+  {
+    "id": 229,
+    "title": "menulis",
+    "cardBackTitle": "schreiben"
+  },
+  {
+    "id": 230,
+    "title": "benar",
+    "cardBackTitle": "richtig"
+  },
+  {
+    "id": 231,
+    "title": "atau",
+    "cardBackTitle": "oder"
+  },
+  {
+    "id": 232,
+    "title": "lakukan",
+    "cardBackTitle": "machen"
+  },
+  {
+    "id": 233,
+    "title": "akibat",
+    "cardBackTitle": "Konsequenz, Folge"
+  },
+  {
+    "id": 234,
+    "title": "orang",
+    "cardBackTitle": "Person"
+  },
+  {
+    "id": 235,
+    "title": "punya",
+    "cardBackTitle": "haben"
+  },
+  {
+    "id": 236,
+    "title": "menceritakan",
+    "cardBackTitle": "erzählen"
+  },
+  {
+    "id": 237,
+    "title": "hasil",
+    "cardBackTitle": "Ergebnisse"
+  },
+  {
+    "id": 238,
+    "title": "penyelidikannya",
+    "cardBackTitle": "die Untersuchung"
+  }
+]

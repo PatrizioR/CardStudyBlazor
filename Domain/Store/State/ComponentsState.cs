@@ -17,5 +17,7 @@ namespace CardStudyBlazor.Domain.Store.State
 
         public IEnumerable<Flashcard>? CurrentFlashcards { get; set; }
         public IEnumerable<Category>? CurrentCategories { get; set; }
+
+        public event EventHandler<ComponentsState> DataLoaded;
     }
 }

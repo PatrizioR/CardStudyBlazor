@@ -58,5 +58,11 @@ namespace CardStudyBlazor.Domain.Services
             _logger.LogInformation($"Issuing action to remove category");
             _dispatcher.Dispatch(new RemoveCategoryAction(item));
         }
+
+        public void LoadAll()
+        {
+            this.LoadFlashcards();
+            this.LoadCategories();
+        }
     }
 }

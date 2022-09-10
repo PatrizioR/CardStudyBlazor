@@ -1,4 +1,7 @@
-﻿@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+﻿@using CardStudyBlazor.Domain.Configuration
+@using CardStudyBlazor.Domain.Models
+@using Newtonsoft.Json
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
 @inject IBlazorDownloadFileService BlazorDownloadFileService
 
 <div class="w-full">
@@ -34,6 +37,7 @@
                     </li>
                     <li>
                         <div title="Upload" @onclick="UploadClickAsync" class="cursor-pointer block py-2 pr-4 pl-3 text-white bg-blue-700 rounded text-blue-700 p-0 dark:text-white">
+                            <InputFile accept="application/json" OnChange="@LoadFilesAsync" />
                             <svg width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19.35 10.04A7.49 7.49 0 0 0 12 4C9.11 4 6.6 5.64 5.35 8.04A5.994 5.994 0 0 0 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5c0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4c0-2.05 1.53-3.76 3.56-3.97l1.07-.11l.5-.95A5.469 5.469 0 0 1 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5l1.53.11A2.98 2.98 0 0 1 22 15c0 1.65-1.35 3-3 3zM8 13h2.55v3h2.9v-3H16l-4-4z" /></svg>
                         </div>
                     </li>
@@ -43,13 +47,63 @@
     </nav>
 </div>
 
-@code{
-    private async Task DownloadClickAsync(){
-        await Task.CompletedTask;
-
+@code {
+    private async Task LoadFilesAsync(InputFileChangeEventArgs e)
+    {
+        foreach (var file in e.GetMultipleFiles(1))
+        {
+            try
+            {
+                await using var memoryStream = new MemoryStream();
+                await file.OpenReadStream().CopyToAsync(memoryStream);
+                memoryStream.Position = 0;
+                using var textReader = new StreamReader(memoryStream);
+                var fileContent = await textReader.ReadToEndAsync();
+                var components = JsonConvert.DeserializeObject<Components>(fileContent);
+                
+            }
+            catch (Exception ex)
+            {
+                //Logg.LogError("File: {Filename} Error: {Error}",
+                //    file.Name, ex.Message);
+            }
+        }
     }
 
-    private async Task UploadClickAsync(){
+    private void DataLoaded(object? sender, EventArgs e)
+    {
+        if (ComponentsState.Value.CurrentFlashcards != null && ComponentsState.Value.CurrentCategories != null)
+        {
+            ComponentsState.StateChanged -= DataLoaded;
+            DownloadDataAsync();
+        }
+    }
+    [Inject] public IState<ComponentsState> ComponentsState { get; set; } = null!;
+    [Inject] public StateFacade Facade { get; set; } = null!;
+    [Inject] public IBlazorDownloadFileService DownloadFileService { get; set; } = null!;
+
+    private async Task DownloadClickAsync()
+    {
+        await Task.CompletedTask;
+        ComponentsState.StateChanged += DataLoaded;
+        Facade.LoadAll();
+    }
+
+    private async Task DownloadDataAsync()
+    {
+        var components = new Components()
+            {
+                Flashcards = ComponentsState.Value.CurrentFlashcards,
+                Categories = ComponentsState.Value.CurrentCategories
+            };
+
+        var content = JsonConvert.SerializeObject(components, JsonConfiguration.DefaultSerializeSettings);
+
+        var result = await BlazorDownloadFileService.DownloadFileFromText($"cardstudy_{DateTime.Now:yyyy-MM-dd_HH_mm_ss}.json", content, System.Text.Encoding.UTF8, "application/json");
+    }
+
+    private async Task UploadClickAsync()
+    {
         await Task.CompletedTask;
     }
 }
