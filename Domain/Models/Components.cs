@@ -1,17 +1,18 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CardStudyBlazor.Domain.Models
 {
-    public class Components
+    public record Components
     {
         [JsonProperty("categories")]
-        public IEnumerable<Category>? Categories { get; set; }
+        public IImmutableList<Category>? Categories { get; set; }
         [JsonProperty("flashcards")]
-        public IEnumerable<Flashcard>? Flashcards { get; set; }
+        public IImmutableList<Flashcard>? Flashcards { get; set; }
     }
 }

@@ -15,6 +15,14 @@ namespace CardStudyBlazor.Domain.Services
         public DbClientRepository(ICardStudyContextFactory dbContextFactory)
             => this.dbContextFactory = dbContextFactory;
 
+        public async Task AddAllAsync<T>(HttpClient client, IEnumerable<T> items) where T : class
+        {
+            foreach(var item in items ?? Enumerable.Empty<T>())
+            {
+                await AddAsync(client, item);
+            }
+        }
+
         public async Task<T> AddAsync<T>(HttpClient client, T item) where T : class
         {
             using var ctx = await dbContextFactory.CreateCardStudyContextAsync();
@@ -57,6 +65,20 @@ namespace CardStudyBlazor.Domain.Services
             }
         }
 
+        public async Task RemoveAllAsync<T>(HttpClient client) where T : class
+        {
+            var items = await GetAllAsync<T>(client);
+            foreach(var item in items)
+            {
+                await RemoveAsync(client, item);
+            }
+        }
+
+        public async Task RemoveAllAsync(HttpClient client)
+        {
+            await this.RemoveAllAsync<Flashcard>(client);
+            await this.RemoveAllAsync<Category>(client);
+        }
 
         public async Task RemoveAsync<T>(HttpClient client, T item) where T : class
         {
@@ -77,7 +99,7 @@ namespace CardStudyBlazor.Domain.Services
 
             if(itemToRemove != null)
             {
-                ctx.Remove(item);
+                ctx.Remove(itemToRemove);
                 await ctx.SaveChangesAsync();
             }
         }

@@ -1,6 +1,7 @@
 using Fluxor;
 using CardStudyBlazor.Domain.Store.Features.Components.Actions.LoadFlashcards;
 using CardStudyBlazor.Domain.Store.State;
+using System.Collections.Immutable;
 
 namespace CardStudyBlazor.Domain.Store.Features.Components.Reducers
 {
@@ -20,7 +21,7 @@ namespace CardStudyBlazor.Domain.Store.Features.Components.Reducers
         {
             IsLoading = false,
             CurrentErrorMessage = null,
-            CurrentFlashcards = action.Items
+            CurrentComponents = state.CurrentComponents with { Flashcards = action.Items?.ToImmutableArray() }
         };
 
         [ReducerMethod]

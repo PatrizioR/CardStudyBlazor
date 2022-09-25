@@ -3,6 +3,7 @@ using CardStudyBlazor.Domain.Store.Features.Components.Actions.RemoveCategory;
 using CardStudyBlazor.Domain.Store.State;
 using CardStudyBlazor.Domain.Models;
 using System.Linq;
+using System.Collections.Immutable;
 
 namespace CardStudyBlazor.Domain.Store.Features.Components.Reducers
 {
@@ -22,8 +23,7 @@ namespace CardStudyBlazor.Domain.Store.Features.Components.Reducers
             {
                 IsLoading = false,
                 CurrentErrorMessage = null,
-                CurrentCategories = state.CurrentCategories!.Except(new List<Category>() { action.Item })
-
+                CurrentComponents = state.CurrentComponents with { Categories = state.CurrentComponents.Categories!.Except(new List<Category>() { action.Item }).ToImmutableArray() }
             };
 
         [ReducerMethod]

@@ -13,6 +13,6 @@ namespace CardStudyBlazor.Domain.Store.Features.Components
         public override string GetName() => nameof(ComponentsFeature);
 
         protected override ComponentsState GetInitialState() =>
-           new ComponentsState(false, null, null, null, null);
+           new ComponentsState(false, null, null, new Models.Components());
     }
 }

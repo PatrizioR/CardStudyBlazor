@@ -4,8 +4,8 @@ namespace CardStudyBlazor.Domain.Store.Features.Components.Actions.LoadCategorie
 {
     public record LoadCategoriesSuccessAction
     {
-        public LoadCategoriesSuccessAction(IEnumerable<Category>? items) => Items = items;
+        public LoadCategoriesSuccessAction(IEnumerable<Category> items) => Items = items;
 
-        public IEnumerable<Category>? Items { get; set; }
+        public IEnumerable<Category> Items { get; set; }
     }
 }

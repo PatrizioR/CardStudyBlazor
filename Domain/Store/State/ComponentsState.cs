@@ -12,12 +12,8 @@ namespace CardStudyBlazor.Domain.Store.State
         public ComponentsState(bool isLoading,
             string? currentErrorMessage,
             string? currentSuccessMessage,
-            IEnumerable<Category>? currentCategories,
-            IEnumerable<Flashcard>? currentFlashcards) : base(isLoading, currentErrorMessage, currentSuccessMessage) => (CurrentCategories, CurrentFlashcards) = (currentCategories, currentFlashcards);
+            Components currentComponents) : base(isLoading, currentErrorMessage, currentSuccessMessage) => (CurrentComponents) = (currentComponents);
 
-        public IEnumerable<Flashcard>? CurrentFlashcards { get; set; }
-        public IEnumerable<Category>? CurrentCategories { get; set; }
-
-        public event EventHandler<ComponentsState> DataLoaded;
+        public Components CurrentComponents { get; set; }
     }
 }

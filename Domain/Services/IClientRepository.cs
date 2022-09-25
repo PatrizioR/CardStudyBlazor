@@ -11,6 +11,9 @@ namespace CardStudyBlazor.Domain.Services
     {
         public Task<IEnumerable<T>> GetAllAsync<T>(HttpClient client) where T : class;
         public Task<T> AddAsync<T>(HttpClient client, T item) where T : class;
-        public Task RemoveAsync<T>(HttpClient client, T item) where T : class;     
+        public Task RemoveAsync<T>(HttpClient client, T item) where T : class;
+        public Task RemoveAllAsync<T>(HttpClient client) where T : class;
+        public Task RemoveAllAsync(HttpClient client);
+        public Task AddAllAsync<T>(HttpClient client, IEnumerable<T> items) where T : class;
     }
 }

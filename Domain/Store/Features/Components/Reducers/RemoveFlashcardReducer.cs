@@ -2,6 +2,7 @@ using Fluxor;
 using CardStudyBlazor.Domain.Store.Features.Components.Actions.RemoveFlashcard;
 using CardStudyBlazor.Domain.Store.State;
 using CardStudyBlazor.Domain.Models;
+using System.Collections.Immutable;
 
 namespace CardStudyBlazor.Domain.Store.Features.Components.Reducers
 {
@@ -21,7 +22,7 @@ namespace CardStudyBlazor.Domain.Store.Features.Components.Reducers
             {
                 IsLoading = false,
                 CurrentErrorMessage = null,
-                CurrentFlashcards = state.CurrentFlashcards!.Except(new List<Flashcard>() { action.Item })
+                CurrentComponents = state.CurrentComponents with { Flashcards = state.CurrentComponents.Flashcards!.Except(new List<Flashcard>() { action.Item }).ToImmutableArray() }
             };
 
         [ReducerMethod]

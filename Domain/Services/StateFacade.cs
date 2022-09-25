@@ -2,9 +2,11 @@
 using CardStudyBlazor.Domain.Store.Features.Components.Actions.AddCategory;
 using CardStudyBlazor.Domain.Store.Features.Components.Actions.AddFlashcard;
 using CardStudyBlazor.Domain.Store.Features.Components.Actions.LoadCategories;
+using CardStudyBlazor.Domain.Store.Features.Components.Actions.LoadComponents;
 using CardStudyBlazor.Domain.Store.Features.Components.Actions.LoadFlashcards;
 using CardStudyBlazor.Domain.Store.Features.Components.Actions.RemoveCategory;
 using CardStudyBlazor.Domain.Store.Features.Components.Actions.RemoveFlashcard;
+using CardStudyBlazor.Domain.Store.Features.Components.Actions.SaveComponents;
 using Fluxor;
 using Microsoft.Extensions.Logging;
 using System;
@@ -61,8 +63,21 @@ namespace CardStudyBlazor.Domain.Services
 
         public void LoadAll()
         {
+            this.LoadComponents(new Components());
             this.LoadFlashcards();
             this.LoadCategories();
+        }
+
+        public void LoadComponents(Components components)
+        {
+            _logger.LogInformation($"Issuing action to load components");
+            _dispatcher.Dispatch(new LoadComponentsAction(components));
+        }
+
+        public void SaveComponents(Components components)
+        {
+            _logger.LogInformation($"Issuing action to save components");
+            _dispatcher.Dispatch(new SaveComponentsAction(components));
         }
     }
 }

@@ -1,6 +1,8 @@
 using Fluxor;
 using CardStudyBlazor.Domain.Store.Features.Components.Actions.LoadCategories;
 using CardStudyBlazor.Domain.Store.State;
+using CardStudyBlazor.Domain.Models;
+using System.Collections.Immutable;
 
 namespace CardStudyBlazor.Domain.Store.Features.Components.Reducers
 {
@@ -20,7 +22,7 @@ namespace CardStudyBlazor.Domain.Store.Features.Components.Reducers
             {
                 IsLoading = false,
                 CurrentErrorMessage = null,
-                CurrentCategories = action.Items
+                CurrentComponents = state.CurrentComponents with { Categories = (state.CurrentComponents.Categories != null ? state.CurrentComponents.Categories!.Concat(action.Items).ToImmutableArray() : action.Items).ToImmutableArray() }
             };
 
         [ReducerMethod]

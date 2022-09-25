@@ -16,19 +16,14 @@ namespace CardStudyBlazor.Domain.Services
 
         public InMemoryClientRepository()
         {
-            categories.Add(new Category()
-            {
-                Id = 1,
-                Name = "TestName",
-                Description = "TestDescription"
-            });
+        }
 
-            flashcards.Add(new Flashcard()
+        public async Task AddAllAsync<T>(HttpClient client, IEnumerable<T> items) where T : class
+        {
+            foreach(var item in items)
             {
-                Id = 1,
-                Title = "TestTitle",
-                CardBackTitle = "TestCardBackTitle"
-            });
+                await AddAsync(client, item);
+            }
         }
 
         public async Task<T> AddAsync<T>(HttpClient client, T item) where T : class
@@ -69,6 +64,28 @@ namespace CardStudyBlazor.Domain.Services
                 default:
                     throw new ArgumentException($"type unknown: {typeof(T).Name}");
             }
+        }
+
+        public async Task RemoveAllAsync<T>(HttpClient client) where T : class
+        {
+            await Task.CompletedTask;
+            switch (typeof(T))
+            {
+                case Type flashcardType when flashcardType == typeof(Flashcard):
+                    flashcards.Clear();
+                    break;
+                case Type categoryType when categoryType == typeof(Category):
+                    categories.Clear();
+                    break;
+                default:
+                    throw new ArgumentException($"type unknown: {typeof(T).Name}");
+            }
+        }
+
+        public async Task RemoveAllAsync(HttpClient client)
+        {
+            await RemoveAllAsync<Flashcard>(client);
+            await RemoveAllAsync<Category>(client);
         }
 
         public async Task RemoveAsync<T>(HttpClient client, T item) where T : class

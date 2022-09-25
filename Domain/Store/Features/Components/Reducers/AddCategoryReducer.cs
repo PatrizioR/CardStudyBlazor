@@ -3,6 +3,7 @@ using CardStudyBlazor.Domain.Store.Features.Components.Actions.AddCategory;
 using CardStudyBlazor.Domain.Store.State;
 using CardStudyBlazor.Domain.Models;
 using System.Linq;
+using System.Collections.Immutable;
 
 namespace CardStudyBlazor.Domain.Store.Features.Components.Reducers
 {
@@ -22,7 +23,7 @@ namespace CardStudyBlazor.Domain.Store.Features.Components.Reducers
             {
                 IsLoading = false,
                 CurrentErrorMessage = null,
-                CurrentCategories = state.CurrentCategories!.Concat(new List<Category>() { action.Item })
+                CurrentComponents = state.CurrentComponents != null ? state.CurrentComponents with { Categories = state.CurrentComponents.Categories!.Concat(new List<Category>() { action.Item }).ToImmutableArray() } : new Models.Components() { Categories = new List<Category>() { action.Item }.ToImmutableArray() }
             };
 
         [ReducerMethod]

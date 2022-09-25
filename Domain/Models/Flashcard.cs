@@ -17,9 +17,13 @@ namespace CardStudyBlazor.Domain.Models
 
         [Required]
         [JsonRequired]
-        [JsonProperty("cardBackTitle", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        [JsonProperty("card_back_title", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public string CardBackTitle { get; set; } = null!;
 
-        //public Category? Category { get; set; }
+        [JsonIgnore]
+        public Category? Category { get; set; }
+
+        [JsonProperty("category_id")]
+        public int? CategoryId { get; set; }
     }
 }

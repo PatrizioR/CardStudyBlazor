@@ -25,6 +25,6 @@ builder.Services.AddFluxor(options =>
 #endif
 });
 builder.Services.AddScoped<StateFacade>();
-builder.Services.AddSingleton<IClientRepository, InMemoryClientRepository>();
+builder.Services.AddSingleton<IClientRepository, DbClientRepository>();
 builder.Services.AddBlazorDownloadFile();
 await builder.Build().RunAsync();

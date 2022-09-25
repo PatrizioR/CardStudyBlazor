@@ -83,7 +83,7 @@
             StateHasChanged();
         }
     }
-    private IEnumerable<Flashcard>? flashcards => ComponentsState.Value.CurrentFlashcards;
+    private IEnumerable<Flashcard>? flashcards => ComponentsState.Value.CurrentComponents.Flashcards;
     private Flashcard[] filteredFlashcards
     {
         get
@@ -94,7 +94,7 @@
 
     protected override void OnAfterRender(bool firstRender)
     {
-        if(firstRender && ComponentsState.Value.CurrentFlashcards == null){
+        if(firstRender && ComponentsState.Value.CurrentComponents.Flashcards == null){
             Facade.LoadFlashcards();
         }
     }
