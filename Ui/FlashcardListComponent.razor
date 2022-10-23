@@ -66,7 +66,7 @@
 </div>
 
 @code {
-    [Inject] public IState<ComponentsState> ComponentsState { get; set; } = null!;
+    [Inject] public IState<CardStudyComponentsState> ComponentsState { get; set; } = null!;
     [Inject] public StateFacade Facade { get; set; } = null!;
     private ElementReference inpTitle;
     private ElementReference inpCardBackTitle;
@@ -89,13 +89,6 @@
         get
         {
             return this.flashcards?.Where((item) => string.IsNullOrEmpty(searchText) || item.Title.ToLowerInvariant().Contains(searchText.ToLowerInvariant()) || item.CardBackTitle.ToLowerInvariant().Contains(searchText.ToLowerInvariant())).OrderByDescending(item => item.Title.ToLowerInvariant() == searchText.ToLowerInvariant() || item.CardBackTitle.ToLowerInvariant() == searchText.ToLowerInvariant()).ThenByDescending(item => item.Id).ToArray() ?? Array.Empty<Flashcard>();
-        }
-    }
-
-    protected override void OnAfterRender(bool firstRender)
-    {
-        if(firstRender && ComponentsState.Value.CurrentComponents.Flashcards == null){
-            Facade.LoadFlashcards();
         }
     }
 

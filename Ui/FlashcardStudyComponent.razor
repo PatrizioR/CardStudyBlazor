@@ -63,7 +63,7 @@
 }
 
 @code {
-    [Inject] public IState<ComponentsState> ComponentsState { get; set; } = null!;
+    [Inject] public IState<CardStudyComponentsState> ComponentsState { get; set; } = null!;
     [Inject] public StateFacade Facade { get; set; } = null!;
     public int Language { get; set; }
     public int Amount { get; set; } = 20;
@@ -73,10 +73,6 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender && ComponentsState.Value.CurrentComponents.Flashcards == null)
-        {
-            Facade.LoadFlashcards();
-        }
         await base.OnAfterRenderAsync(firstRender);
     }
 }

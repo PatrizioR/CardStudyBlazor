@@ -10,3 +10,16 @@
     </main>
 </div>
 <ScreenLoadingComponent />
+
+@code{
+    [Inject] public IState<CardStudyComponentsState> ComponentsState { get; set; } = null!;
+    [Inject] public StateFacade Facade { get; set; } = null!;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if(firstRender && ComponentsState.Value.CurrentComponents == null){
+            Facade.LoadComponents(new CardStudyComponents());
+        }
+        base.OnAfterRender(firstRender);
+    }
+}

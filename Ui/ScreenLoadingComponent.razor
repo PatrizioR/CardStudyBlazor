@@ -1,5 +1,5 @@
 ﻿@inherits Fluxor.Blazor.Web.Components.FluxorComponent
-@inject IState<ComponentsState> ComponentsState
+@inject IState<CardStudyComponentsState> ComponentsState
 @if (ComponentsState.Value.IsLoading)
 {
     <div class="w-full h-full fixed block top-0 left-0 bg-white opacity-75 z-50">

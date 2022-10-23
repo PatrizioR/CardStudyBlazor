@@ -39,7 +39,7 @@ namespace CardStudyBlazor.Wasm.Shared
                     memoryStream.Position = 0;
                     using var textReader = new StreamReader(memoryStream);
                     var fileContent = await textReader.ReadToEndAsync();
-                    var components = JsonConvert.DeserializeObject<Components>(fileContent);
+                    var components = JsonConvert.DeserializeObject<CardStudyComponents>(fileContent);
                     if(components == null)
                     {
                         // TODO show toast symbol
@@ -65,27 +65,20 @@ namespace CardStudyBlazor.Wasm.Shared
         }
 
         [Inject]
-        public IState<ComponentsState> ComponentsState { get; set; } = null !;
+        public IState<CardStudyComponentsState> ComponentsState { get; set; } = null !;
         [Inject]
         public StateFacade Facade { get; set; } = null !;
         [Inject]
         public IBlazorDownloadFileService DownloadFileService { get; set; } = null !;
         private async Task DownloadClickAsync()
         {
-            await Task.CompletedTask;
-            ComponentsState.StateChanged += DataLoaded;
-            Facade.LoadAll();
+            await DownloadDataAsync();
         }
 
         private async Task DownloadDataAsync()
         {
             var content = JsonConvert.SerializeObject(ComponentsState.Value.CurrentComponents, JsonConfiguration.DefaultSerializeSettings);
             await BlazorDownloadFileService.DownloadFileFromText($"cardstudy_{DateTime.Now:yyyy-MM-dd_HH_mm_ss}.json", content, System.Text.Encoding.UTF8, "application/json");
-        }
-
-        private async Task UploadClickAsync()
-        {
-            await Task.CompletedTask;
         }
     }
 }

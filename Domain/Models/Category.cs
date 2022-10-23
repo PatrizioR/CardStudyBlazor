@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace CardStudyBlazor.Domain.Models
 {
-    public class Category
+    public record Category
     {
         [Key]
         [JsonRequired]
         [JsonProperty("id")]
-        public int Id { get; set; }
+        public int Id { get; init; }
         [Required]
         [JsonRequired]
         [JsonProperty("name", DefaultValueHandling = DefaultValueHandling.Ignore)]
-        public string Name { get; set; } = null!;
+        public string Name { get; init; } = null!;
         [JsonProperty("description", DefaultValueHandling = DefaultValueHandling.Ignore)]
-        public string? Description { get; set; }
+        public string? Description { get; init; }
     }
 }

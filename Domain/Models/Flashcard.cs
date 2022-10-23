@@ -3,27 +3,27 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CardStudyBlazor.Domain.Models
 {
-    public class Flashcard
+    public record Flashcard
     {
         [Key]
         [JsonRequired]
         [JsonProperty("id")]
-        public int Id { get; set; }
+        public Guid Id { get; init; }
 
         [Required]
         [JsonRequired]
         [JsonProperty("title", DefaultValueHandling = DefaultValueHandling.Ignore)]
-        public string Title { get; set; } = null!;
+        public string Title { get; init; } = null!;
 
         [Required]
         [JsonRequired]
         [JsonProperty("card_back_title", DefaultValueHandling = DefaultValueHandling.Ignore)]
-        public string CardBackTitle { get; set; } = null!;
+        public string CardBackTitle { get; init; } = null!;
 
         [JsonIgnore]
-        public Category? Category { get; set; }
+        public Category? Category { get; init; }
 
         [JsonProperty("category_id")]
-        public int? CategoryId { get; set; }
+        public Guid? CategoryId { get; init; }
     }
 }

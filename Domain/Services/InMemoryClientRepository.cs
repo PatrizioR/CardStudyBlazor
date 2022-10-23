@@ -34,7 +34,7 @@ namespace CardStudyBlazor.Domain.Services
                 case Flashcard flashcard:
                     flashcards.Add(new Flashcard
                     {
-                        Id = flashcards.Any() ? flashcards.Max(t => t.Id) + 1 : 1,
+                        Id = flashcard.Id,
                         Title = flashcard.Title,
                         CardBackTitle = flashcard.CardBackTitle
                     });
@@ -42,7 +42,7 @@ namespace CardStudyBlazor.Domain.Services
                 case Category category:
                     categories.Add(new Category
                     {
-                        Id = categories.Any() ? categories.Max(t => t.Id) + 1 : 1,
+                        Id = category.Id,
                         Name = category.Name,
                         Description = category.Description
                     });
