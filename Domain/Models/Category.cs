@@ -13,7 +13,7 @@ namespace CardStudyBlazor.Domain.Models
         [Key]
         [JsonRequired]
         [JsonProperty("id")]
-        public int Id { get; init; }
+        public Guid Id { get; init; }
         [Required]
         [JsonRequired]
         [JsonProperty("name", DefaultValueHandling = DefaultValueHandling.Ignore)]

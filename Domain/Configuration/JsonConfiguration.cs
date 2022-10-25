@@ -13,5 +13,8 @@ namespace CardStudyBlazor.Domain.Configuration
         {
             Formatting = Formatting.Indented,
         };
+
+        public const string ComponentsKey = "CardStudy:Components";
+
     }
 }

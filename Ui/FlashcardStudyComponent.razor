@@ -28,7 +28,6 @@
                         <table class="table-auto">
                             <thead class="border-b">
                                 <tr>
-                                    <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Id</th>
                                     <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Bahasa Indonesia</th>
                                     <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Deutsch</th>
                                 </tr>
@@ -36,7 +35,6 @@
                             <tbody>
                                 <Virtualize Items="@RandomFlashcards" Context="Item">
                                     <tr class="border-b">
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">@Item.Id</td>
                                         @if (Language == 1)
                                         {
                                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">@Item.Title</td>
@@ -67,7 +65,7 @@
     [Inject] public StateFacade Facade { get; set; } = null!;
     public int Language { get; set; }
     public int Amount { get; set; } = 20;
-    public IEnumerable<Flashcard>? Flashcards => ComponentsState.Value.CurrentComponents.Flashcards;
+    public IEnumerable<Flashcard>? Flashcards => ComponentsState.Value.CurrentComponents?.Flashcards;
     public Random rnd = new Random();
     public Flashcard[]? RandomFlashcards => Flashcards?.OrderBy(x => rnd.Next()).Take(Amount).ToArray();
 

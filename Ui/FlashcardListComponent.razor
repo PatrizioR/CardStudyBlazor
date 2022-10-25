@@ -6,65 +6,66 @@
 @using Newtonsoft.Json
 @using CardStudyBlazor.Domain.Models
 @using CardStudyBlazor.Domain.Services
-
-<div>
-    <div class="flex my-auto">
-        <div><h2 class="text-2xl">Flashcards</h2></div>
-    </div>
-    <div class="m-2">
-        <div @onkeydown="EnterSubmitAsync" class="w-full">
-            <label for="inpTitle" class="w-1/5">Enter Card title:</label>
-            <input class="w-1/5" name="inpTitle" @ref="@inpTitle"
+@if (ComponentsState.Value.CurrentComponents != null)
+{
+    <div>
+        <div class="flex my-auto">
+            <div><h2 class="text-2xl">Flashcards</h2></div>
+        </div>
+        <div class="m-2">
+            <div @onkeydown="EnterSubmitAsync" class="w-full">
+                <label for="inpTitle" class="w-1/5">Enter Card title:</label>
+                <input class="w-1/5" name="inpTitle" @ref="@inpTitle"
                    autofocus
                    type="text"
                    disabled="@ComponentsState.Value.IsLoading"
                    @bind="newTitle"
                    @bind:event="oninput" />
-            <label for="inpCardBackTitle">Enter Card back title:</label>
-            <input class="w-1/5" name="inpCardBackTitle" @ref="@inpCardBackTitle"
+                <label for="inpCardBackTitle">Enter Card back title:</label>
+                <input class="w-1/5" name="inpCardBackTitle" @ref="@inpCardBackTitle"
                    type="text"
                    disabled="@ComponentsState.Value.IsLoading"
                    @bind="newCardBackTitle"
                    @bind:event="oninput" />
-            <button class="disabled:bg-green-100 disabled:cursor-not-allowed px-3 py-2 w-48 cursor-pointer rounded-2xl bg-green-200 hover:bg-green-400 shadow-md text-center" @onclick="@(async ()=> await AddFlashcardAsync())"
+                <button class="disabled:bg-green-100 disabled:cursor-not-allowed px-3 py-2 w-48 cursor-pointer rounded-2xl bg-green-200 hover:bg-green-400 shadow-md text-center" @onclick="@(async ()=> await AddFlashcardAsync())"
                     disabled="@(ComponentsState.Value.IsLoading || string.IsNullOrWhiteSpace(newTitle)|| string.IsNullOrWhiteSpace(newCardBackTitle))">
-                Add Flashcard
-            </button>
+                    Add Flashcard
+                </button>
+            </div>
         </div>
-    </div>
-    <div class="items-end">
-        <label>Search</label>
-        <input type="search" @bind="SearchText" @bind:event="oninput" />
-    </div>
-    @if (flashcards?.Count() > 0)
-    {
-        <div class="m-2 flex flex-col">
-            <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-                    <div class="overflow-hidden">
-                        <table class="min-w-full">
-                            <thead class="border-b">
-                                <tr>
-                                    <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Id</th>
-                                    <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Title</th>
-                                    <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Back card title</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <Virtualize Items="@filteredFlashcards" Context="flashcard">
-                                    <tr class="border-b">
-                                        <FlashcardComponent @key="@flashcard.Id" Item="@flashcard" />
+        <div class="items-end">
+            <label>Search</label>
+            <input type="search" @bind="SearchText" @bind:event="oninput" />
+        </div>
+        @if (flashcards?.Count() > 0)
+        {
+            <div class="m-2 flex flex-col">
+                <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                        <div class="overflow-hidden">
+                            <table class="min-w-full">
+                                <thead class="border-b">
+                                    <tr>
+                                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Title</th>
+                                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Back card title</th>
+                                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Category</th>
                                     </tr>
-                                </Virtualize>
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    <Virtualize Items="@filteredFlashcards" Context="flashcard">
+                                        <tr class="border-b">
+                                            <FlashcardComponent @key="@flashcard.Id" Item="@flashcard" />
+                                        </tr>
+                                    </Virtualize>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    }
-</div>
-
+        }
+    </div>
+}
 @code {
     [Inject] public IState<CardStudyComponentsState> ComponentsState { get; set; } = null!;
     [Inject] public StateFacade Facade { get; set; } = null!;
@@ -73,17 +74,20 @@
     private string newTitle = string.Empty;
     private string newCardBackTitle = string.Empty;
     public string searchText = string.Empty;
-    public string SearchText{
+    public string SearchText
+    {
         get => searchText;
-        set{
-            if(searchText == value){
+        set
+        {
+            if (searchText == value)
+            {
                 return;
             }
             searchText = value;
             StateHasChanged();
         }
     }
-    private IEnumerable<Flashcard>? flashcards => ComponentsState.Value.CurrentComponents.Flashcards;
+    private IEnumerable<Flashcard>? flashcards => ComponentsState.Value.CurrentComponents?.Flashcards;
     private Flashcard[] filteredFlashcards
     {
         get
@@ -104,7 +108,7 @@
     {
         if (!string.IsNullOrWhiteSpace(newTitle) && !string.IsNullOrWhiteSpace(newCardBackTitle) && flashcards?.Any((item) => item.Title.Equals(newTitle, StringComparison.OrdinalIgnoreCase)) != true)
         {
-            Facade.AddFlashcard(new Flashcard() { Title = newTitle, CardBackTitle = newCardBackTitle });
+            Facade.AddFlashcard(new Flashcard() { Id = Guid.NewGuid(), Title = newTitle, CardBackTitle = newCardBackTitle });
             newTitle = newCardBackTitle = string.Empty;
             await inpTitle.FocusAsync();
         }

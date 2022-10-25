@@ -86,7 +86,7 @@
             StateHasChanged();
         }
     }
-    private IEnumerable<Category>? categories => ComponentsState.Value.CurrentComponents.Categories;
+    private IEnumerable<Category>? categories => ComponentsState.Value.CurrentComponents?.Categories;
     private Category[] filteredCategories => this.categories?.Where((item) => string.IsNullOrEmpty(searchText) || item.Name.ToLowerInvariant().Contains(searchText.ToLowerInvariant()) || item.Description?.ToLowerInvariant().Contains(searchText.ToLowerInvariant()) == true).OrderByDescending(item => item.Name.ToLowerInvariant() == searchText.ToLowerInvariant() || item.Description?.ToLowerInvariant() == searchText.ToLowerInvariant()).ThenByDescending(item => item.Id).ToArray() ?? Array.Empty<Category>();
 
     protected override Task OnAfterRenderAsync(bool firstRender)
@@ -106,7 +106,7 @@
     {
         if (!string.IsNullOrWhiteSpace(newName) && !string.IsNullOrWhiteSpace(newDescription) && categories?.Any((item) => item.Name.Equals(newName, StringComparison.OrdinalIgnoreCase)) != true)
         {
-            Facade.AddCategory(new Category() { Name = newName, Description = newDescription });
+            Facade.AddCategory(new Category() { Id = Guid.NewGuid(), Name = newName, Description = newDescription });
             newName = newDescription = string.Empty;
             await inpName.FocusAsync();
         }

@@ -23,6 +23,7 @@ using CardStudyBlazor.Domain.Configuration;
 using CardStudyBlazor.Domain.Models;
 using Newtonsoft.Json;
 using Serilog;
+using Blazored.LocalStorage;
 
 namespace CardStudyBlazor.Wasm.Shared
 {
@@ -70,9 +71,16 @@ namespace CardStudyBlazor.Wasm.Shared
         public StateFacade Facade { get; set; } = null !;
         [Inject]
         public IBlazorDownloadFileService DownloadFileService { get; set; } = null !;
+        [Inject] public ILocalStorageService LocalStorage { get; set; } = null!;
+
         private async Task DownloadClickAsync()
         {
             await DownloadDataAsync();
+        }
+
+        private async Task SaveClickAsync()
+        {
+            await LocalStorage.SetItemAsync(JsonConfiguration.ComponentsKey, ComponentsState.Value.CurrentComponents);
         }
 
         private async Task DownloadDataAsync()

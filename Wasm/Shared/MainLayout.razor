@@ -1,4 +1,6 @@
-﻿@inherits Fluxor.Blazor.Web.Components.FluxorLayout
+﻿@using Blazored.LocalStorage
+@using CardStudyBlazor.Domain.Configuration
+@inherits Fluxor.Blazor.Web.Components.FluxorLayout
 <div>
     <NavMenu />
 </div>
@@ -14,12 +16,15 @@
 @code{
     [Inject] public IState<CardStudyComponentsState> ComponentsState { get; set; } = null!;
     [Inject] public StateFacade Facade { get; set; } = null!;
-
-    protected override void OnAfterRender(bool firstRender)
+    [Inject] public ILocalStorageService LocalStorage { get; set; } = null!;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if(firstRender && ComponentsState.Value.CurrentComponents == null){
-            Facade.LoadComponents(new CardStudyComponents());
+        if (firstRender && ComponentsState.Value.CurrentComponents == null)
+        {
+            // load from local storage
+            var components = await LocalStorage.GetItemAsync<CardStudyComponents>(JsonConfiguration.ComponentsKey);
+            Facade.LoadComponents(components ?? new CardStudyComponents());
         }
-        base.OnAfterRender(firstRender);
+        await base.OnAfterRenderAsync(firstRender);
     }
 }

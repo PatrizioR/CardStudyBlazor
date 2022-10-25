@@ -12,8 +12,8 @@ namespace CardStudyBlazor.Domain.Store.State
         public CardStudyComponentsState(bool isLoading,
             string? currentErrorMessage,
             string? currentSuccessMessage,
-            CardStudyComponents currentComponents) : base(isLoading, currentErrorMessage, currentSuccessMessage) => (CurrentComponents) = (currentComponents);
+            CardStudyComponents? currentComponents) : base(isLoading, currentErrorMessage, currentSuccessMessage) => (CurrentComponents) = (currentComponents);
 
-        public CardStudyComponents CurrentComponents { get; set; }
+        public CardStudyComponents? CurrentComponents { get; set; }
     }
 }
