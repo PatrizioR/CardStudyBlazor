@@ -10,10 +10,15 @@
     </EditForm>
 
     <ButtonComponent Style="ButtonStyle.Primary"
-                 Disabled="@(CurrentCourseCollection.CourseCards?.Count != CurrentComponents?.Flashcards?.Count)"
+                 Disabled="@(CurrentCourseCollection.CourseCards?.Count == CurrentComponents?.Flashcards?.Count)"
                  OnClickCallback="@SyncFlashcards">
         Sync flashcards
     </ButtonComponent>
+    @foreach(var courseCard in CurrentCourseCollection.CourseCards ?? Enumerable.Empty<CourseCard>()){
+        <div>
+            TODO: @courseCard.FlashcardId
+        </div>
+    }
 }
 
 @code {
@@ -24,9 +29,9 @@
     public CourseCollection? CurrentCourseCollection => CurrentComponents?.CourseCollection;
 
     public void SyncFlashcards(){
-        var flashcardIds = CurrentComponents?.Flashcards?.Select((item) => item.Id)?.ToList() ?? Enumerable.Empty<Guid>();
-        var courseCardFlashcardIds = CurrentCourseCollection.CourseCards?.Where((item) => item.FlashcardId.HasValue).Select((item) => item.FlashcardId!.Value)?.ToList() ?? Enumerable.Empty<Guid>();
-        var missingFlashcardIds = flashcardIds.Except(courseCardFlashcardIds);
+        IEnumerable<Guid> flashcardIds = CurrentComponents?.Flashcards?.Select((item) => item.Id)?.ToList() ?? Enumerable.Empty<Guid>();
+        IEnumerable<Guid> courseCardFlashcardIds = CurrentCourseCollection?.CourseCards?.Where((item) => item.FlashcardId.HasValue).Select((item) => item.FlashcardId!.Value)?.ToList() ?? Enumerable.Empty<Guid>();
+        IEnumerable<Guid> missingFlashcardIds = flashcardIds.Except(courseCardFlashcardIds);
         Facade.AddFlashcardsToCourseCollection(missingFlashcardIds);
     }
 }

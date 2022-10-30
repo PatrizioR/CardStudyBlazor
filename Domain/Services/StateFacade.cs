@@ -5,6 +5,7 @@ using CardStudyBlazor.Domain.Store.Features.CardStudyComponents.Actions.LoadComp
 using CardStudyBlazor.Domain.Store.Features.CardStudyComponents.Actions.RemoveCategory;
 using CardStudyBlazor.Domain.Store.Features.CardStudyComponents.Actions.RemoveFlashcard;
 using CardStudyBlazor.Domain.Store.Features.CardStudyComponents.Actions.SaveComponents;
+using CardStudyBlazor.Domain.Store.Features.Components.Actions.AddFlashcardsToCourseCollection;
 using Fluxor;
 using Microsoft.Extensions.Logging;
 using System;
@@ -60,10 +61,10 @@ namespace CardStudyBlazor.Domain.Services
             _dispatcher.Dispatch(new SaveComponentsAction(components));
         }
 
-        public void AddFlashcardsToCourseCollection(IImmutableList<Flashcard> flashcards)
+        public void AddFlashcardsToCourseCollection(IEnumerable<Guid> flashcardIds)
         {
             _logger.LogInformation($"Issuing action to add flashcards to course collection");
-            _dispatcher.Dispatch(new AddFlashcardsToCourseCollectionAction(flashcards));
+            _dispatcher.Dispatch(new AddFlashcardsToCourseCollectionAction(flashcardIds));
         }
     }
 }
