@@ -1,0 +1,180 @@
+﻿@typeparam TValue
+@{
+    var valueType = typeof(TValue);
+    var underlyingValueType = Nullable.GetUnderlyingType(valueType);
+    if (underlyingValueType != null)
+    {
+        // TValue is nullable
+        valueType = underlyingValueType;
+    }
+}
+<div class="relative">
+    @if (valueType.IsEnum)
+    {
+        <select @bind="@Value" id="@Name" disabled="@ReadOnly" @attributes="AdditionalAttributes">
+            @foreach (var val in Enum.GetValues(valueType))
+            {
+
+                @if (val.ToString() == Value?.ToString())
+                {
+                    <option selected="selected" value="@val.ToString()">@val.ToString()</option>
+                }else{
+                    <option value="@val.ToString()">@val.ToString()</option>
+                }
+                
+            }
+        </select>
+    }
+    else
+    {
+        @switch (Value)
+        {
+            case bool _:
+                <InputCheckbox type="checkbox" class="disabled:bg-gray-300" id="@Name" @bind-Value="@ValueAsBool" disabled="@ReadOnly" @attributes="AdditionalAttributes" />
+                <label for="@Name" class="select-none">@Name</label>
+                break;
+            default:
+                <input type="@InputType" id="@Name" @bind="@Value" @bind:event="oninput"
+           class="m-2 h-10 pl-3 pt-4 placeholder-transparent border border-gray-200 rounded-md peer focus:outline-none focus:border-gray-500 focus:shadow-sm"
+           placeholder="@Name" disabled="@ReadOnly" autocomplete="off" @attributes="AdditionalAttributes" />
+                <label for="@Name"
+           class="absolute top-0 left-2 h-full px-3 py-5 text-sm transition-all duration-100 ease-in-out origin-left transform scale-75 translate-x-1 -translate-y-3 opacity-75 pointer-events-none peer-placeholder-shown:opacity-100 peer-focus:opacity-75 peer-placeholder-shown:scale-100 peer-focus:scale-75 peer-placeholder-shown:translate-y-0 peer-focus:-translate-y-3 peer-placeholder-shown:translate-x-0 peer-focus:translate-x-1 @(ReadOnly ? "text-gray-500" : "")">@Name</label>
+                break;
+        }
+    }
+</div>
+
+@code {
+    [Parameter]
+    [EditorRequired]
+    public string Name { get; set; } = null!;
+
+    [Parameter]
+    public bool ReadOnly { get; set; }
+
+    [Parameter]
+    public bool IsPassword { get; set; }
+
+    public bool ValueAsBool
+    {
+        get
+        {
+            var valueType = typeof(TValue);
+            var underlyingValueType = Nullable.GetUnderlyingType(valueType);
+            if (underlyingValueType != null)
+            {
+                // TValue is nullable
+                valueType = underlyingValueType;
+            }
+
+            if (typeof(bool) == valueType)
+            {
+                return Convert.ToBoolean(Value);
+            }
+            return false;
+        }
+        set
+        {
+            var valueType = typeof(TValue);
+            var underlyingValueType = Nullable.GetUnderlyingType(valueType);
+            if (underlyingValueType != null)
+            {
+                // TValue is nullable
+                valueType = underlyingValueType;
+            }
+
+            if (typeof(bool) != valueType)
+            {
+                return;
+            }
+
+            var oldValue = Convert.ToBoolean(Value);
+            if (value.Equals(oldValue))
+            {
+                return;
+            }
+
+
+
+            Value = (TValue)Convert.ChangeType(!oldValue, valueType);
+
+            ValueChanged.InvokeAsync((TValue)(value as object));
+            StateHasChanged();
+        }
+    }
+
+    private TValue? _value = default(TValue?);
+    [Parameter]
+    public TValue? Value
+    {
+        get
+        {
+            return _value;
+        }
+        set
+        {
+            if(value == null && _value == null){
+                return;
+            }
+            if (value != null && value.Equals(_value) != false)
+            {
+                return;
+            }
+
+            _value = value;
+            ValueChanged.InvokeAsync(value);
+            StateHasChanged();
+        }
+    }
+
+    [Parameter]
+    public EventCallback<TValue> ValueChanged { get; set; }
+
+    [Parameter(CaptureUnmatchedValues = true)]
+    public IReadOnlyDictionary<string, object>? AdditionalAttributes { get; set; }
+
+    public string InputType
+    {
+        get
+        {
+            if (Value != null)
+            {
+                switch (Value)
+                {
+                    case int:
+                        return "number";
+                    case bool:
+                        return "checkbox";
+                    default:
+                        return IsPassword ? "password" : "text";
+                }
+            }
+            else
+            {
+                var valueType = typeof(TValue);
+                var underlyingValueType = Nullable.GetUnderlyingType(valueType);
+                if (underlyingValueType != null)
+                {
+                    // TValue is nullable
+                    valueType = underlyingValueType;
+                }
+
+                if (valueType == typeof(int))
+                {
+                    return "number";
+                }
+                if (valueType == typeof(bool))
+                {
+                    return "checkbox";
+                }
+
+                if (valueType.IsEnum)
+                {
+                    return "select";
+                }
+                return IsPassword ? "password" : "text";
+            }
+
+        }
+    }
+}

@@ -1,0 +1,32 @@
+﻿@using Microsoft.AspNetCore.Components.Forms
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+@if (CurrentCourseCollection != null)
+{
+    <EditForm Model="@CurrentCourseCollection">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <FloatingInputComponent Name="Title" @bind-Value="@CurrentCourseCollection.Title" />
+    </EditForm>
+
+    <ButtonComponent Style="ButtonStyle.Primary"
+                 Disabled="@(CurrentCourseCollection.CourseCards?.Count != CurrentComponents?.Flashcards?.Count)"
+                 OnClickCallback="@SyncFlashcards">
+        Sync flashcards
+    </ButtonComponent>
+}
+
+@code {
+    [Inject] public IState<CardStudyComponentsState> ComponentsState { get; set; } = null!;
+    [Inject] public StateFacade Facade { get; set; } = null!;
+
+    public CardStudyComponents? CurrentComponents => ComponentsState.Value.CurrentComponents;
+    public CourseCollection? CurrentCourseCollection => CurrentComponents?.CourseCollection;
+
+    public void SyncFlashcards(){
+        var flashcardIds = CurrentComponents?.Flashcards?.Select((item) => item.Id)?.ToList() ?? Enumerable.Empty<Guid>();
+        var courseCardFlashcardIds = CurrentCourseCollection.CourseCards?.Where((item) => item.FlashcardId.HasValue).Select((item) => item.FlashcardId!.Value)?.ToList() ?? Enumerable.Empty<Guid>();
+        var missingFlashcardIds = flashcardIds.Except(courseCardFlashcardIds);
+        Facade.AddFlashcardsToCourseCollection(missingFlashcardIds);
+    }
+}

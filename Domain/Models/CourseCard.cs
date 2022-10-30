@@ -14,9 +14,7 @@ namespace CardStudyBlazor.Domain.Models
         [JsonRequired]
         [JsonProperty("id")]
         public Guid Id { get; init; }
-        [JsonIgnore]
-        public Flashcard? Flashcard { get; init; }
-
+        
         [JsonProperty("flashcard_id")]
         public Guid? FlashcardId { get; init; }
 

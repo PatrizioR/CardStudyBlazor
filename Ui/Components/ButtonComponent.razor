@@ -1,0 +1,54 @@
+﻿<button disabled="@Disabled" title="@Hint" class="@StyleClasses font-bold py-2 px-4 rounded disabled:shadow-none shadow-md" @onclick="OnClickCallback" @attributes="AdditionalAttributes">
+    @ChildContent
+</button>
+
+@code {
+    [Parameter]
+    [EditorRequired]
+    public RenderFragment ChildContent { get; set; } = null!;
+
+    [Parameter]
+    public string? Hint { get; set; }
+
+    [Parameter]
+    public ButtonStyle Style { get; set; }
+
+    [Parameter]
+    public bool Disabled { get; set; }
+
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClickCallback { get; set; }
+
+    [Parameter(CaptureUnmatchedValues = true)]
+    public IReadOnlyDictionary<string, object>? AdditionalAttributes { get; set; }
+
+    public string StyleClasses
+    {
+        get
+        {
+            List<string> resultClasses = new();
+
+            switch (Style)
+            {
+                case ButtonStyle.Success:
+                    resultClasses.Add("bg-green-500 hover:bg-green-700 text-white disabled:bg-green-300 active:bg-green-600");
+                    break;
+                case ButtonStyle.Secondary:
+                    resultClasses.Add("bg-gray-500 hover:bg-gray-700 text-white disabled:bg-gray-300 active:bg-gray-600");
+                    break;
+                case ButtonStyle.Warning:
+                    resultClasses.Add("bg-yellow-400 hover:bg-yellow-600 text-black disabled:bg-yellow-300 active:bg-yellow-500");
+                    break;
+                case ButtonStyle.Danger:
+                    resultClasses.Add("bg-red-500 hover:bg-red-700 text-white disabled:bg-red-300 active:bg-red-600");
+                    break;
+                default:
+                    resultClasses.Add("bg-blue-500 hover:bg-blue-700 text-white disabled:bg-blue-300 active:bg-blue-600");
+                    break;
+            }
+
+
+            return string.Join(" ", resultClasses);
+        }
+    }
+}

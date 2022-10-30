@@ -15,6 +15,8 @@ namespace CardStudyBlazor.Domain.Models
         [JsonRequired]
         [JsonProperty("id")]
         public Guid Id { get; init; }
-        IImmutableList<CourseCard>? CourseCards { get; init; }
+        public string? Title { get; set; }
+        public DateTime? Created { get; set; }
+        public IImmutableList<CourseCard>? CourseCards { get; init; }
     }
 }

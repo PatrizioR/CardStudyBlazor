@@ -9,6 +9,7 @@ using Fluxor;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -57,6 +58,12 @@ namespace CardStudyBlazor.Domain.Services
         {
             _logger.LogInformation($"Issuing action to save components");
             _dispatcher.Dispatch(new SaveComponentsAction(components));
+        }
+
+        public void AddFlashcardsToCourseCollection(IImmutableList<Flashcard> flashcards)
+        {
+            _logger.LogInformation($"Issuing action to add flashcards to course collection");
+            _dispatcher.Dispatch(new AddFlashcardsToCourseCollectionAction(flashcards));
         }
     }
 }
